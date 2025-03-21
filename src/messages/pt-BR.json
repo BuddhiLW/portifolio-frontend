@@ -5,5 +5,8 @@
   },
   "navigation": {
     "language": "Idioma"
+  },
+  "header": {
+    "profile": "Perfil"
   }
 } 

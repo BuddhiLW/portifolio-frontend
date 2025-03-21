@@ -1,6 +1,6 @@
 import { Montserrat } from "next/font/google";
-import { notFound } from "next/navigation";
-import { NextIntlClientProvider } from 'next-intl';
+import { Providers } from '@/components/Providers';
+import { setRequestLocale } from 'next-intl/server';
 
 const font = Montserrat({
   subsets: ["latin"],
@@ -9,24 +9,27 @@ const font = Montserrat({
 
 export default async function LocaleLayout({
   children,
-  params: { locale }
+  params
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const locale = await Promise.resolve(params).then(p => p.locale);
+  setRequestLocale(locale);
+
   let messages;
   try {
-    messages = (await import(`../../../messages/${locale}.json`)).default;
+    messages = (await import(`../../messages/${locale}.json`)).default;
   } catch {
-    notFound();
+    messages = {};
   }
 
   return (
     <html lang={locale}>
       <body className={`${font.className} antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <Providers locale={locale} messages={messages}>
           {children}
-        </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );
