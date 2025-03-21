@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to our app"
+  },
+  "navigation": {
+    "language": "Language"
+  }
+} 
