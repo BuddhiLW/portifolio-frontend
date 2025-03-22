@@ -1,10 +1,15 @@
 {
   "home": {
-    "title": "Welcome",
-    "welcome": "Welcome to our app"
+    "pre-title": "Software",
+    "title": "Engineer",
+    "pos-title": "Physicist",
+    "welcome": "Welcome to my Portifolio"
   },
   "navigation": {
-    "language": "Language"
+    "language": "Language",
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
   },
   "header": {
     "profile": "Profile"

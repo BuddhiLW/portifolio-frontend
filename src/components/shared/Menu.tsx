@@ -12,7 +12,7 @@ export default function Menu() {
 	const isHome = normalizedPath === "/" || normalizedPath === ""
 
 	return (
-		<nav className="flex gap-6 ml-4">
+		<nav className="flex gap-2 ml-2">
 			<MenuItem href="/" text="Home" selected={isHome} />
 			<MenuItem href="/projects/1" text="Projects" selected={normalizedPath.startsWith("/projects")} />
 			<MenuItem
@@ -30,14 +30,14 @@ function MenuItem(props: { href: string; text: string; selected: boolean; newTab
 		<Link href={props.href} target={props.newTab ? "_blank" : "_self"}>
 			<span
 				className={`
-					flex items-center gap-2 text-sm
+					flex items-center text-sm px-2 py-2 
+					rounded-full
 					${props.selected 
-						? "border-b-4 border-red-600 dark:text-zinc-200 font-medium" 
-						: "text-neutral-600 dark:text-zinc-400"
+						? "bg-black/10 dark:bg-white/10 font-medium border-b-2 border-red-600" 
+						: "hover:bg-black/5 dark:hover:bg-white/5"
 					}
-					hover:text-neutral-900 dark:hover:text-zinc-200
-					hover:bg-neutral-100 dark:hover:bg-neutral-800
-					transition-colors
+					hover:opacity-100
+					transition-all duration-300
 				`}
 			>
 				{props.text}

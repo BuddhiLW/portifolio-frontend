@@ -20,7 +20,7 @@ export function LanguageToggle() {
       className="text-xl hover:scale-110 transition-transform"
       title={locale === 'en' ? 'Mudar para Português' : 'Change to English'}
     >
-      {locale === 'en' ? 'Português 🇧🇷' : 'English 🇺🇸'}
+      {locale === 'en' ? '🇺🇸 -> 🇧🇷' : '🇧🇷 -> 🇺🇸'}
     </button>
   )
 } 

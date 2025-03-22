@@ -2,16 +2,16 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --text-primary: #171717;
-  --text-secondary: #666666;
+  --foreground: #0a0a0a;
+  --text-primary: #0f172a;    /* Slate 900 - darker, more readable */
+  --text-secondary: #475569;  /* Slate 600 - better contrast for secondary text */
 }
 
 .dark {
-  --background: #171717;
-  --foreground: #ffffff;
-  --text-primary: #ffffff;
-  --text-secondary: #a3a3a3;
+  --background: #0f0404;      /* Very dark red-black */
+  --foreground: #f8fafc;      /* Slate 50 - crisp white text */
+  --text-primary: #f1f1f1;    /* Neutral white for professionalism */
+  --text-secondary: #a3a3a3;  /* Neutral gray for secondary text */
 }
 
 body {

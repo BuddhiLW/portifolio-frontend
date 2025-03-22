@@ -1,29 +1,34 @@
 'use client'
 
-import React, { PropsWithChildren } from 'react'
+import { ThemeProvider } from 'next-themes'
 import { NextIntlClientProvider } from 'next-intl'
 import { AbstractIntlMessages } from 'next-intl'
-import { ThemeProvider } from 'next-themes'
+import { ReactNode, useEffect, useState } from 'react'
 
-type ProvidersProps = {
+interface ProvidersProps {
   locale: string
   messages: AbstractIntlMessages
+  children: ReactNode
 }
 
-export function Providers({ children, locale, messages }: PropsWithChildren<ProvidersProps>) {
+export function Providers({ children, locale, messages }: ProvidersProps) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <ThemeProvider 
-        attribute="class"
-        defaultTheme="light"
-        enableSystem={false}
-        forcedTheme={undefined}
-        storageKey="theme-mode"
+        attribute="class" 
+        defaultTheme="system" 
+        enableSystem
         themes={['light', 'dark']}
-        value={{
-          light: 'light',
-          dark: 'dark'
-        }}
       >
         {children}
       </ThemeProvider>

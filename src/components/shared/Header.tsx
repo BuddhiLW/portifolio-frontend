@@ -11,7 +11,12 @@ export default function Header() {
 	const t = useTranslations()
 
 	return (
-		<header className="flex items-center h-16 border-b border-neutral-200 dark:border-neutral-800">
+		<header className="
+			flex items-center w-full h-16 
+			backdrop-blur-md transition-colors duration-300 
+			bg-[var(--background)]/80
+			border-b border-[var(--text-secondary)]/10
+		">
 			<Container className="flex-1 flex justify-between items-center">
 				<div className="flex items-center">
 					<Link href="/" className="hidden sm:block">
@@ -25,7 +30,7 @@ export default function Header() {
 					<Link
 						href="https://www.linkedin.com/in/pedro-g-branquinho/"
 						target="_blank"
-						className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-full px-7 py-1 text-sm transition-colors dark:text-zinc-900"
+						className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-full px-7 py-1 text-sm transition-colors duration-300"
 					>
 						{t("header.profile")}
 					</Link>

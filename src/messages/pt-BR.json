@@ -1,10 +1,15 @@
 {
   "home": {
-    "title": "Bem-vindo",
-    "welcome": "Bem-vindo ao nosso app"
+    "pre-title": "Software",
+    "title": "Engenheiro",
+    "pos-title": "Físico",
+    "welcome": "Bem-vindo ao meu Portifólio"
   },
   "navigation": {
-    "language": "Idioma"
+    "language": "Idioma",
+    "home": "Início",
+    "projects": "Projetos",
+    "contact": "Contato"
   },
   "header": {
     "profile": "Perfil"
