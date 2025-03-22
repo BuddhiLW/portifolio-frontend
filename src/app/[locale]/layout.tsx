@@ -25,8 +25,8 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
-      <body className={`${font.className} antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={font.className}>
         <Providers locale={locale} messages={messages}>
           {children}
         </Providers>
