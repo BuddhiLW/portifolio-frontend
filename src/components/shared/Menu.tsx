@@ -1,9 +1,11 @@
 "use client"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from 'next-intl'
 
 export default function Menu() {
 	const path = usePathname()
+	const t = useTranslations('Menu')
 	
 	// Remove language prefix from path for comparison
 	const normalizedPath = path.replace(/^\/(en|pt-BR)/, '')
@@ -13,11 +15,11 @@ export default function Menu() {
 
 	return (
 		<nav className="flex gap-2 ml-2">
-			<MenuItem href="/" text="Home" selected={isHome} />
-			<MenuItem href="/projects/1" text="Projects" selected={normalizedPath.startsWith("/projects")} />
+			<MenuItem href="/" text={t('home')} selected={isHome} />
+			<MenuItem href="/projects/1" text={t('projects')} selected={normalizedPath.startsWith("/projects")} />
 			<MenuItem
 				href="https://api.whatsapp.com/send/?phone=5516993401215&text&type=phone_number&app_absent=0"
-				text="Contact"
+				text={t('contact')}
 				selected={false}
 				newTab={true}
 			/>

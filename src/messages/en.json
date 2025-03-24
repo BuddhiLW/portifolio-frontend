@@ -13,5 +13,10 @@
   },
   "header": {
     "profile": "Profile"
+  },
+  "Menu": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
   }
 } 
