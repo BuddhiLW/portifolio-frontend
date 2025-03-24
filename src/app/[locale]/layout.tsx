@@ -9,12 +9,13 @@ const font = Montserrat({
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
-  children: React.ReactNode;
-  params: { locale: string };
+  children: React.ReactNode,
+  params: Promise<{ locale: string }> | undefined
 }) {
-  const locale = await Promise.resolve(params).then(p => p.locale);
+  const resolvedParams = await Promise.resolve(params) as { locale: string };
+  const { locale } = resolvedParams;
   setRequestLocale(locale);
 
   let messages;
