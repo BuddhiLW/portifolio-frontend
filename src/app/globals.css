@@ -6,6 +6,8 @@
   --text-primary: #0f172a;    /* Slate 900 - darker, more readable */
   --text-secondary: #475569;  /* Slate 600 - better contrast for secondary text */
   --tech-bg: #fee2e2;        /* Light red background for tech items */
+  --tech-container-bg: rgba(244, 244, 245, 0.8);  /* Light zinc background */
+  --tech-container-border: #e4e4e7;               /* Light border */
 }
 
 .dark {
@@ -14,6 +16,8 @@
   --text-primary: #f1f1f1;    /* Neutral white for professionalism */
   --text-secondary: #a3a3a3;  /* Neutral gray for secondary text */
   --tech-bg: #450a0a;        /* Dark red background for tech items */
+  --tech-container-bg: rgba(0, 0, 0, 0.8);       /* Dark background */
+  --tech-container-border: #27272a;              /* Dark border */
 }
 
 body {
@@ -34,4 +38,33 @@ body {
 
 .tech-item:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Add dark mode specific hover effect */
+@media (prefers-color-scheme: dark) {
+  .tech-item:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(255, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+/* For when dark class is manually set */
+.dark .tech-item:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+              0 0 20px rgba(255, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.tech-container {
+  background-color: var(--tech-container-bg);
+  border: 1px solid var(--tech-container-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }

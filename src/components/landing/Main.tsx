@@ -1,7 +1,13 @@
 import Header from "@/components/shared/Header"
+import { Tecnologia } from "@core"
 import { useTranslations } from "next-intl"
+import Techs from "../tecnologias/Tecnologias"
 
-export default function Main() {
+export interface MainProps {
+	techs: Tecnologia[]
+}
+
+export default function Main({ techs }: MainProps) {
 	const t = useTranslations()
 
 	return (
@@ -22,6 +28,7 @@ export default function Main() {
 							<h2 className="text-2xl font-bold text-white/90">
 								({t("home.pre-title")}) {t("home.title")} ({t("home.pos-title")})
 							</h2>
+							<Techs techs={techs} />
 						</div>
 					</div>
 				</div>
