@@ -18,5 +18,8 @@
     "home": "Início",
     "projects": "Projetos",
     "contact": "Contato"
+  },
+  "sections": {
+    "technologies": "Tecnologias"
   }
 } 

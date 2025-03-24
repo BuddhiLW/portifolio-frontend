@@ -5,17 +5,33 @@
   --foreground: #0a0a0a;
   --text-primary: #0f172a;    /* Slate 900 - darker, more readable */
   --text-secondary: #475569;  /* Slate 600 - better contrast for secondary text */
+  --tech-bg: #fee2e2;        /* Light red background for tech items */
 }
 
 .dark {
-  --background: #0f0404;      /* Very dark red-black */
+  --background: #1a0505;      /* Slightly lighter dark red for better contrast */
   --foreground: #f8fafc;      /* Slate 50 - crisp white text */
   --text-primary: #f1f1f1;    /* Neutral white for professionalism */
   --text-secondary: #a3a3a3;  /* Neutral gray for secondary text */
+  --tech-bg: #450a0a;        /* Dark red background for tech items */
 }
 
 body {
   background: var(--background);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tech-item {
+  background-color: var(--tech-bg);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.tech-item:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

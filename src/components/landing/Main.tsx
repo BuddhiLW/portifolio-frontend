@@ -5,7 +5,7 @@ export default function Main() {
 	const t = useTranslations()
 
 	return (
-		<div className="flex flex-col h-screen">
+		<div className="flex flex-col">
 			<div className="flex flex-col items-center justify-center h-[500px] bg-[url('/images/main2.webp')] bg-cover bg-center">
 				<Header />
 				<div className="flex-1 flex items-center justify-center">
