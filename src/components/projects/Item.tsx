@@ -9,19 +9,15 @@ export interface ItemProjectProps {
 
 export default function Project({ project }: ItemProjectProps) {
 	return (
-		<Link href={`/projects/${project.id}`}>
-			<div className="
-			relative rounded-2xl overflow-hidden 
-			border-zinc-800 min-w-65 min-h-64
-			">
+		<Link href={`/projeto/${project.id}`}>
+			<div className="relative rounded-2xl overflow-hidden border 
+			border-zinc-800 min-w-64 min-h-64">
 				<Image
 					src={project.imagens[0]}
 					alt={project.nome}
+					objectFit="object-cover"
 					fill
-					className="object-cover"
 				/>
-				<h3>{project.nome}</h3>
-				<p>{project.descricao}</p>
 			</div>
 		</Link>
 	)
