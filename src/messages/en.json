@@ -20,6 +20,44 @@
     "contact": "Contact"
   },
   "sections": {
-    "technologies": "Technologies"
+    "technologies": "Technologies",
+    "projects": {
+      "featured": "Featured",
+      "web": "Web",
+      "mobile": "Mobile",
+      "games": "Games",
+      "desktop": "Desktop",
+      "cli": "CLI",
+      "others": "Others"
+    },
+    "experience": {
+      "title": "Experience",
+      "current": "Current",
+      "roles": {
+        "software_engineer": "Software Engineer",
+        "developer": "Developer",
+        "researcher": "Researcher"
+      },
+      "companies": {
+        "funeraria": {
+          "description": "Landing Page for the funeral home, with a simple and clean design. Mobile app for internal stock management. Web application in order to automate tasks, like producing high-quality design digital-letters."
+        },
+        "orasis": {
+          "description": "SAGA pattern using Go. Modeling and architecting highly performant and scaling solution with a microsservices-focused design. Among the technologies used, RedPandas (Kafka), Cadence, Prometheus, Grafana, PostgreSQL, Postman, Swagger, REST APIs and gRPC."
+        },
+        "facti": {
+          "description": "Working on an application to facilitate the accountability of projects, which have been funded by the government. The technologies used are Clojure, Vanilla JavaScript, Angular, JQuery, Express.js, Bootstrap and Material UI."
+        },
+        "usp": {
+          "description": "Modeling Traffic Flow, with Julia and Python - numerical solution to Partial Differential Equations (PDEs)."
+        },
+        "flowfinance": {
+          "description": "Developed an application to perform the Ledger and Clarence of billing data coming from BIORC, in CSV format. The technology used was Clojure."
+        },
+        "lupo": {
+          "description": "Wrote software to automate Technical Reports while working with WJB Engenharia as a contractor. Performed Safety Analysis and Inventory of all machinery for Brazil's largest sock and underwear manufacturer. Developed automation solutions for technical documentation and inventory management."
+        }
+      }
+    }
   }
 } 
