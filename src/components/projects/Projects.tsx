@@ -15,7 +15,7 @@ export default function Projects(props: ProjectsProps) {
 			opts={{align: "center", loop:true}}
 			className="w-full"
 			>
-				<CarouselContent className="flex">
+				<CarouselContent className="flex items-center">
 						{props.list.map((projeto) => (
 						<CarouselItem key={projeto.id} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
 							<Project project={projeto} />

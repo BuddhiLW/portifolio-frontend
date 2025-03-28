@@ -1,13 +1,21 @@
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 
-export async function httpGet(url: string) {
+export async function httpGet<T>(endpoint: string, params?: Record<string, string>): Promise<T> {
   if (!baseURL) {
     throw new Error('API URL is not configured. Please check NEXT_PUBLIC_API_URL in .env')
   }
 
-  const normalizedUrl = normalizeUrl(`${baseURL}/${url}`)
-  console.log(normalizedUrl)
-  const response = await fetch(normalizedUrl)
+  const normalizedUrl = normalizeUrl(`${baseURL}/${endpoint}`)
+  const url = new URL(normalizedUrl);
+  
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      url.searchParams.append(key, value);
+    });
+  }
+
+  console.log(url.toString())
+  const response = await fetch(url.toString())
   return await response.json()
 }
 

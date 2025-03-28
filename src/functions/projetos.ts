@@ -41,6 +41,6 @@ export async function getProjects(): Promise<ProjetosResult | null> {
 	}
 }
 
-export async function obterProjeto(id: string): Promise<Projeto | null> {
-	return await httpGet(`/projects/${id}`)
+export async function obterProjeto(id: string, locale?: string): Promise<Projeto | null> {
+	return await httpGet(`/projetos/${id}`, locale ? { locale } : undefined)
 }

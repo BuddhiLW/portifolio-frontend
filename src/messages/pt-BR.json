@@ -59,5 +59,10 @@
         }
       }
     }
+  },
+  "curriculum": {
+    "profile_picture": "Foto de Perfil",
+    "titles": "Eng. de Software, Eng. Físico",
+    "introduction": "Olá! Eu sou Pedro Gomes, um engenheiro físico formado pela Universidade de São Paulo (USP). Sou apaixonado por programação e hacking, e tenho uma vasta experiência como desenvolvedor. Sou um entusiasta do Linux e adoro explorar novas tecnologias e soluções inovadoras. Hacking desde 2016."
   }
 } 

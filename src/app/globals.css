@@ -178,3 +178,11 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 500ms;
 }
+
+.gradient-light {   
+  background: linear-gradient(to right, #f00, #27272a); 
+  /* Light mode gradient from red to white */   
+  -webkit-background-clip: text;   
+  -webkit-text-fill-color: transparent; 
+}  
+ .gradient-dark {   background: linear-gradient(to right, #f00, #fff); /* Dark mode gradient from red to zinc */   -webkit-background-clip: text;   -webkit-text-fill-color: transparent; }

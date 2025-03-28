@@ -16,16 +16,16 @@ export default function Main({ techs }: MainProps) {
 				<Header />
 				<div className="flex-1 flex items-center justify-center">
 					{/* Rounded overlay box with content */}
-					<div className="relative bg-black/30 backdrop-blur-[2px] rounded-2xl p-8">
+					<div className="relative bg-black/30 backdrop-blur-[2px] rounded-2xl p-4 w-full mx-auto">
 						<div className="flex flex-col gap-4 text-center">
-							<h1 className="flex gap-3 items-center">
+							<h1 className="flex flex-row gap-2 items-center justify-center">
 								<span className="w-2 h-2 rounded-full bg-red-500"></span>
-								<span className="text-3xl sm:text-5xl text-center font-bold text-white">
+								<span className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">
 									Pedro Gomes Branquinho
 								</span>
 								<span className="w-2 h-2 rounded-full bg-red-500"></span>
 							</h1>
-							<h2 className="text-2xl font-bold text-white/90">
+							<h2 className="text-lg sm:text-2xl font-bold text-white/90">
 								({t("home.pre-title")}) {t("home.title")} ({t("home.pos-title")})
 							</h2>
 							<Techs techs={techs} />

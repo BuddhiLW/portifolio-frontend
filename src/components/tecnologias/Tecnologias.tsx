@@ -9,10 +9,11 @@ export default function Techs({ techs }: TechsProps) {
 	if (!techs) return null
 
 	return (
-		<div className="flex justify-center gap-4">
+		<div className="flex flex-wrap justify-center gap-4">
 			{techs.map((tech) => (
 				<div key={tech.id} className="flex flex-col items-center gap-1">
-					<span className="relative h-11 w-11 sm:h-16 sm:w-16 rounded-xl overflow-hidden">
+					<span className="relative h-8 w-8 md:h-12 md:w-12 lg:h-16 lg:w-16 rounded-xl overflow-hidden">
+
 						<Image src={tech.imagem} alt={tech.nome} fill className="object-contain" />
 					</span>
 				</div>
