@@ -1,9 +1,9 @@
 {
-  "home": {
+  "Index": {
     "pre-title": "Software",
     "title": "Engineer",
     "pos-title": "Physicist",
-    "welcome": "Welcome to my Portifolio"
+    "welcome": "Welcome to my Portfolio"
   },
   "navigation": {
     "language": "Language",
@@ -64,5 +64,10 @@
     "profile_picture": "Profile Picture",
     "titles": "Software Engineer, Physics Engineer",
     "introduction": "Hi! I'm Pedro Gomes, a physics engineer graduated from the University of São Paulo (USP). I'm passionate about programming and hacking, and I have extensive experience as a developer. I'm a Linux enthusiast and love exploring new technologies and innovative solutions. Hacking since 2016."
+  },
+  "Projects": {
+    "notFound": "Project not found",
+    "details": "Project Details",
+    "backToProjects": "Back to Projects"
   }
 } 

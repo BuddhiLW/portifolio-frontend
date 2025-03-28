@@ -20,8 +20,11 @@ export default async function LocaleLayout({
 
   let messages;
   try {
+    console.log('Loading messages for', locale)
     messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch {
+    console.log(messages)
+  } catch (error) {
+    console.error('Failed to load messages:', error);
     messages = {};
   }
 

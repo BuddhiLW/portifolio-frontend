@@ -1,14 +1,19 @@
+'use client'
+
 import { Projeto } from "@core"
 import Image from "next/image"
 import Link from "next/link"
+import { useLocale } from 'next-intl'
 
 export interface ItemProjectProps {
 	project: Projeto
 }
 
 export default function Project({ project }: ItemProjectProps) {
+	const locale = useLocale()
+	
 	return (
-		<Link href={`/projects/${project.id}`}>
+		<Link href={`/${locale}/projects/${project.id}`}>
 			<div className="relative rounded-2xl overflow-hidden border 
 			border-zinc-800 min-w-64 min-h-64">
 				<Image

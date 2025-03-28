@@ -4,7 +4,6 @@ import Projects from "@/components/projects/Projects"
 import Container from "@/components/shared/Container"
 import { getTech } from "@/functions/tecnologias"
 import { getProjects } from "@/functions/projetos"
-import { getTranslations } from 'next-intl/server'
 
 export default async function Home() {
 	const techs = await getTech()
@@ -17,25 +16,20 @@ export default async function Home() {
 		desktop: [], cli: [], others: [], all: []
 	}
 
-	const t = await getTranslations('sections')
-
 	return (
 		<>
 			<Main techs={techs.featuring} />
 			<Container className="py-16 flex flex-col gap-10 items-center">
-				<Projects title={t("projects.featured")} list={projects.featured} />
-				<Projects title={t("projects.web")} list={projects.web} />
-				<Projects title={t("projects.mobile")} list={projects.mobile} />
-				<Projects title={t("projects.games")} list={projects.games} />
+				<Projects title="Featured" translationKey="featured" list={projects.featured} />
+				<Projects title="Web" translationKey="web" list={projects.web} />
+				<Projects title="Mobile" translationKey="mobile" list={projects.mobile} />
+				<Projects title="Games" translationKey="games" list={projects.games} />
 				{/* TODO: Add `desktop`, `cli`, `others` in database
-				<Projects title={t("sections.projects.desktop")} list={projects.desktop} />
-				<Projects title={t("sections.projects.cli")} list={projects.cli} />
-				<Projects title={t("sections.projects.others")} list={projects.others} />
+				<Projects title="Desktop" translationKey="desktop" list={projects.desktop} />
+				<Projects title="CLI" translationKey="cli" list={projects.cli} />
+				<Projects title="Others" translationKey="others" list={projects.others} />
 				*/}
-{/*				<Container className="w-full flex flex-col md:flex-row gap-12 items-start">
-					<Experience />
-				</Container> */}
-					<Curriculum techs={techs.all} /> 
+				<Curriculum techs={techs.all} /> 
 			</Container>
 		</>
 	)

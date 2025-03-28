@@ -1,3 +1,5 @@
+'use client'
+
 import Header from "@/components/shared/Header"
 import { Tecnologia } from "@core"
 import { useTranslations } from "next-intl"
@@ -8,7 +10,7 @@ export interface MainProps {
 }
 
 export default function Main({ techs }: MainProps) {
-	const t = useTranslations()
+	const t = useTranslations('Index')
 
 	return (
 		<div className="flex flex-col">
@@ -26,7 +28,7 @@ export default function Main({ techs }: MainProps) {
 								<span className="w-2 h-2 rounded-full bg-red-500"></span>
 							</h1>
 							<h2 className="text-lg sm:text-2xl font-bold text-white/90">
-								({t("home.pre-title")}) {t("home.title")} ({t("home.pos-title")})
+								({t('pre-title')}) {t('title')} ({t('pos-title')})
 							</h2>
 							<Techs techs={techs} />
 						</div>
