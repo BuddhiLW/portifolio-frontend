@@ -2,14 +2,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react"
 import ThemeToggle from "./ThemeToggle"
-import { ThemeProvider } from "next-themes"
-
-// Decorator to provide the theme context
-const ThemeDecorator = (Story: React.ComponentType) => (
-	<ThemeProvider attribute="class" defaultTheme="light">
-		<Story />
-	</ThemeProvider>
-)
+import { WithProviders, WithDarkTheme } from "../../.storybook/decorators"
 
 const meta = {
 	title: "Components/ThemeToggle",
@@ -18,10 +11,14 @@ const meta = {
 		layout: "centered",
 	},
 	tags: ["autodocs"],
-	decorators: [ThemeDecorator],
+	decorators: [WithProviders],
 } satisfies Meta<typeof ThemeToggle>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const DarkMode: Story = {
+	decorators: [WithDarkTheme],
+}
