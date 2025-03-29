@@ -1,5 +1,7 @@
 @import "tailwindcss";
+
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -262,4 +264,14 @@ body {
 	background: linear-gradient(to right, #f00, #fff); /* Dark mode gradient from red to zinc */
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+[data-badges] {
+	@apply flex flex-wrap justify-center gap-2 p-1;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+[data-badge] > img {
+	@apply m-0;
 }

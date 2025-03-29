@@ -6,6 +6,8 @@ import { Projeto } from "@core"
 import { Suspense } from "react"
 import Techs from "@/components/tecnologias/Tecnologias"
 import TranslucentContainer from "@/components/shared/TranslucentContainer"
+import { getGithubReadme } from "@/functions/github"
+import Readme from "@/components/projects/Readme"
 
 // Create a separate component for loading project data
 async function ProjectDetails({ id, locale }: { id: string; locale: string }) {
@@ -17,6 +19,7 @@ async function ProjectDetails({ id, locale }: { id: string; locale: string }) {
 
 	const images = project.imagens || []
 	const techsList = project.tecnologias
+	const readme = await getGithubReadme(project.repositorio)
 
 	return (
 		<Container className="flex flex-col gap-4 mt-10">
@@ -29,6 +32,7 @@ async function ProjectDetails({ id, locale }: { id: string; locale: string }) {
 			</TranslucentContainer>
 			<div className="mb-2">ID: {project.id}</div>
 			<div className="mb-4">{project.descricao}</div>
+			<Readme markdown={readme} />
 		</Container>
 	)
 }

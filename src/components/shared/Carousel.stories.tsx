@@ -17,9 +17,9 @@ type Story = StoryObj<typeof meta>
 
 // Example component for carousel items
 const images = [
-	"https://via.assets.so/img.jpg?w=1200&h=900&tc=blue&bg=#cecece&t=1",
-	"https://via.assets.so/img.jpg?w=1200&h=900&tc=blue&bg=#cecece&t=2",
-	"https://via.assets.so/img.jpg?w=1200&h=900&tc=blue&bg=#cecece&t=3",
+	"https://via.placeholder.com/600x400?text=Image+1",
+	"https://via.placeholder.com/600x400?text=Image+2",
+	"https://via.placeholder.com/600x400?text=Image+3",
 ]
 
 export const Default: Story = {
