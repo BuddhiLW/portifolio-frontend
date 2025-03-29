@@ -7,6 +7,12 @@ export default function Menu() {
 	const path = usePathname()
 	const t = useTranslations("Menu")
 
+	// Get the current locale from the pathname
+	const currentLocale = path.split("/")[1] || "en" // Default to 'en' if no locale is found
+
+	// Construct the home URL based on the current locale
+	const homeUrl = `/${currentLocale}`
+
 	// Remove language prefix from path for comparison
 	const normalizedPath = path.replace(/^\/(en|pt-BR)/, "")
 
@@ -15,7 +21,7 @@ export default function Menu() {
 
 	return (
 		<nav className="flex gap-2 ml-2">
-			<MenuItem href="/" text={t("home")} selected={isHome} />
+			<MenuItem href={homeUrl} text={t("home")} selected={isHome} />
 			<MenuItem
 				href="/projects/1"
 				text={t("projects")}
