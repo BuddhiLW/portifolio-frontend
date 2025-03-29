@@ -8,12 +8,18 @@ import { getProjects } from "@/functions/projetos"
 export default async function Home() {
 	const techs = await getTech()
 
-	// This uses the nullish coalescing operator (??) 
-	// to provide a default value with empty arrays 
-	// when projects is null 
-	const projects = await getProjects() ?? {
-		featured: [], web: [], mobile: [], games: [],
-		desktop: [], cli: [], others: [], all: []
+	// This uses the nullish coalescing operator (??)
+	// to provide a default value with empty arrays
+	// when projects is null
+	const projects = (await getProjects()) ?? {
+		featured: [],
+		web: [],
+		mobile: [],
+		games: [],
+		desktop: [],
+		cli: [],
+		others: [],
+		all: [],
 	}
 
 	return (
@@ -29,7 +35,7 @@ export default async function Home() {
 				<Projects title="CLI" translationKey="cli" list={projects.cli} />
 				<Projects title="Others" translationKey="others" list={projects.others} />
 				*/}
-				<Curriculum techs={techs.all} /> 
+				<Curriculum techs={techs.all} />
 			</Container>
 		</>
 	)

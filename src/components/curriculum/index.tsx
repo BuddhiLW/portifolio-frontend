@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { Tecnologia } from "@core"
 import UsedTechs from "./UsedTech"
@@ -10,12 +10,14 @@ export interface CurriculumProps {
 }
 
 export default function Curriculum({ techs }: CurriculumProps) {
-
 	return (
-		<div id="curriculum" className="flex flex-col align-left lg:flex-row gap-4 min-h-72 w-full py-8">
+		<div
+			id="curriculum"
+			className="flex flex-col align-left lg:flex-row gap-4 min-h-72 w-full py-8"
+		>
 			<div className="flex flex-col gap-4 w-full lg:w-11/12">
-			<MiniCurriculum />
-			<UsedTechs techs={techs} />
+				<MiniCurriculum />
+				<UsedTechs techs={techs} />
 			</div>
 			<Experience />
 		</div>

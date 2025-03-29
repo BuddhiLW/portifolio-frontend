@@ -1,73 +1,73 @@
 {
-  "Index": {
-    "pre-title": "Software",
-    "title": "Engenheiro",
-    "pos-title": "Físico",
-    "welcome": "Bem-vindo ao meu Portifólio"
-  },
-  "navigation": {
-    "language": "Idioma",
-    "home": "Início",
-    "projects": "Projetos",
-    "contact": "Contato"
-  },
-  "header": {
-    "profile": "Perfil"
-  },
-  "Menu": {
-    "home": "Início",
-    "projects": "Projetos",
-    "contact": "Contato"
-  },
-  "sections": {
-    "technologies": "Tecnologias",
-    "projects": {
-      "featured": "Destaque",
-      "web": "Web",
-      "mobile": "Mobile",
-      "games": "Jogos",
-      "desktop": "Desktop",
-      "cli": "CLI",
-      "others": "Outros"
-    },
-    "experience": {
-      "title": "Experiência",
-      "current": "Atual",
-      "roles": {
-        "software_engineer": "Engenheiro de Software",
-        "developer": "Desenvolvedor",
-        "researcher": "Pesquisador"
-      },
-      "companies": {
-        "funeraria": {
-          "description": "Landing Page para a funerária, com design simples e limpo. Aplicativo móvel para gerenciamento interno de estoque. Aplicação web para automatizar tarefas, como produção de cartas digitais com design de alta qualidade."
-        },
-        "orasis": {
-          "description": "Padrão SAGA usando Go. Modelagem e arquitetura de solução altamente performática e escalável com design focado em microsserviços. Entre as tecnologias utilizadas, RedPandas (Kafka), Cadence, Prometheus, Grafana, PostgreSQL, Postman, Swagger, APIs REST e gRPC."
-        },
-        "facti": {
-          "description": "Desenvolvimento de aplicação para facilitar a prestação de contas de projetos financiados pelo governo. As tecnologias utilizadas são Clojure, JavaScript Vanilla, Angular, JQuery, Express.js, Bootstrap e Material UI."
-        },
-        "usp": {
-          "description": "Modelagem de Fluxo de Tráfego, com Julia e Python - solução numérica para Equações Diferenciais Parciais (EDPs)."
-        },
-        "flowfinance": {
-          "description": "Desenvolvimento de aplicação para realizar o Ledger e Clarence de dados de faturamento vindos do BIORC, em formato CSV. A tecnologia utilizada foi Clojure."
-        },
-        "lupo": {
-          "description": "Desenvolvimento de software para automatizar Relatórios Técnicos enquanto trabalhava com a WJB Engenharia como contratado. Realizou Análise de Segurança e Inventário de todo o maquinário do maior fabricante de meias e roupas íntimas do Brasil. Desenvolveu soluções de automação para documentação técnica e gestão de inventário."
-        }
-      }
-    }
-  },
-  "curriculum": {
-    "profile_picture": "Foto de Perfil",
-    "titles": "Eng. de Software, Eng. Físico",
-    "introduction": "Olá! Eu sou Pedro Gomes, um engenheiro físico formado pela Universidade de São Paulo (USP). Sou apaixonado por programação e hacking, e tenho uma vasta experiência como desenvolvedor. Sou um entusiasta do Linux e adoro explorar novas tecnologias e soluções inovadoras. Hacking desde 2016."
-  },
-  "Projects": {
-    "notFound": "Projeto não encontrado",
-    "details": "Detalhes do Projeto",
-    "backToProjects": "Voltar para Projetos"
-  }
-} 
+	"Index": {
+		"pre-title": "Software",
+		"title": "Engenheiro",
+		"pos-title": "Físico",
+		"welcome": "Bem-vindo ao meu Portifólio"
+	},
+	"navigation": {
+		"language": "Idioma",
+		"home": "Início",
+		"projects": "Projetos",
+		"contact": "Contato"
+	},
+	"header": {
+		"profile": "Perfil"
+	},
+	"Menu": {
+		"home": "Início",
+		"projects": "Projetos",
+		"contact": "Contato"
+	},
+	"sections": {
+		"technologies": "Tecnologias",
+		"projects": {
+			"featured": "Destaque",
+			"web": "Web",
+			"mobile": "Mobile",
+			"games": "Jogos",
+			"desktop": "Desktop",
+			"cli": "CLI",
+			"others": "Outros"
+		},
+		"experience": {
+			"title": "Experiência",
+			"current": "Atual",
+			"roles": {
+				"software_engineer": "Engenheiro de Software",
+				"developer": "Desenvolvedor",
+				"researcher": "Pesquisador"
+			},
+			"companies": {
+				"funeraria": {
+					"description": "Landing Page para a funerária, com design simples e limpo. Aplicativo móvel para gerenciamento interno de estoque. Aplicação web para automatizar tarefas, como produção de cartas digitais com design de alta qualidade."
+				},
+				"orasis": {
+					"description": "Padrão SAGA usando Go. Modelagem e arquitetura de solução altamente performática e escalável com design focado em microsserviços. Entre as tecnologias utilizadas, RedPandas (Kafka), Cadence, Prometheus, Grafana, PostgreSQL, Postman, Swagger, APIs REST e gRPC."
+				},
+				"facti": {
+					"description": "Desenvolvimento de aplicação para facilitar a prestação de contas de projetos financiados pelo governo. As tecnologias utilizadas são Clojure, JavaScript Vanilla, Angular, JQuery, Express.js, Bootstrap e Material UI."
+				},
+				"usp": {
+					"description": "Modelagem de Fluxo de Tráfego, com Julia e Python - solução numérica para Equações Diferenciais Parciais (EDPs)."
+				},
+				"flowfinance": {
+					"description": "Desenvolvimento de aplicação para realizar o Ledger e Clarence de dados de faturamento vindos do BIORC, em formato CSV. A tecnologia utilizada foi Clojure."
+				},
+				"lupo": {
+					"description": "Desenvolvimento de software para automatizar Relatórios Técnicos enquanto trabalhava com a WJB Engenharia como contratado. Realizou Análise de Segurança e Inventário de todo o maquinário do maior fabricante de meias e roupas íntimas do Brasil. Desenvolveu soluções de automação para documentação técnica e gestão de inventário."
+				}
+			}
+		}
+	},
+	"curriculum": {
+		"profile_picture": "Foto de Perfil",
+		"titles": "Eng. de Software, Eng. Físico",
+		"introduction": "Olá! Eu sou Pedro Gomes, um engenheiro físico formado pela Universidade de São Paulo (USP). Sou apaixonado por programação e hacking, e tenho uma vasta experiência como desenvolvedor. Sou um entusiasta do Linux e adoro explorar novas tecnologias e soluções inovadoras. Hacking desde 2016."
+	},
+	"Projects": {
+		"notFound": "Projeto não encontrado",
+		"details": "Detalhes do Projeto",
+		"backToProjects": "Voltar para Projetos"
+	}
+}

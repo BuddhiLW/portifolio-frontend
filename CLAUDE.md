@@ -1,12 +1,14 @@
 # CLAUDE.md - Guide for Agentic Coding Assistants
 
 ## Commands
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
 ## Code Style Guidelines
+
 - **Imports**: Group imports by source (React, next.js, components, etc.)
 - **Component Structure**: React functional components with TypeScript types
 - **Naming**: PascalCase for components, camelCase for functions/variables
@@ -19,6 +21,7 @@
 - **Data Fetching**: Use server components when possible
 
 ## Project Structure
+
 - `/src/app` - Next.js app router pages
 - `/src/components` - Reusable UI components
 - `/src/lib` - Utility functions
@@ -26,6 +29,7 @@
 - `/src/messages` - Translation files
 
 ## Internationalization (i18n) Guidelines
+
 - Use 'use client' directive for components that use i18n hooks
 - Client components should use `useTranslations()` hook
 - Server components should use `getTranslations()` from 'next-intl/server'
@@ -35,11 +39,12 @@
 - Available locales: 'en' and 'pt-BR'
 - Default locale is 'pt-BR'
 - When building reusable components that need translations:
-  - Accept both a fallback string and a translationKey
-  - Use translationKey with useTranslations() when available
-  - Fall back to the string prop when no translation key provided
+    - Accept both a fallback string and a translationKey
+    - Use translationKey with useTranslations() when available
+    - Fall back to the string prop when no translation key provided
 
 ## Component Usage Patterns
+
 - Add `'use client'` directive to components using React hooks
 - Components with interactive elements (buttons, links) should be client components
 - Prefer passing fully translated strings from server to client when possible
@@ -53,6 +58,7 @@
 **Aim**: Professional portfolio with i18n (en/pt-BR), projects showcase, and interactive elements
 
 **Key Rules**:
+
 1. Use App Router with colocated components
 2. Server components by default, client only when necessary
 3. TypeScript interfaces for all props/data
@@ -65,41 +71,44 @@
 10. Modular, reusable component architecture
 
 **Quality Assurance**:
+
 - **Clarification Process**: Seek requirements clarification before implementation
 - **Code Standards**:
-  - TypeScript interfaces for all component props
-  - Inline comments referencing CLAUDE.md conventions
-  - JSDoc for complex utilities
+    - TypeScript interfaces for all component props
+    - Inline comments referencing CLAUDE.md conventions
+    - JSDoc for complex utilities
 - **Performance**:
-  - Optimize RSC payload sizes
-  - Implement loading states for client components
-  - Lazy-load non-critical assets
+    - Optimize RSC payload sizes
+    - Implement loading states for client components
+    - Lazy-load non-critical assets
 - **Accessibility**:
-  - ARIA roles for interactive elements
-  - Semantic HTML structure
-  - Keyboard navigation support
+    - ARIA roles for interactive elements
+    - Semantic HTML structure
+    - Keyboard navigation support
 - **Testing**:
-  - Note required unit tests for complex logic
-  - Suggest storybook stories for UI components
+    - Note required unit tests for complex logic
+    - Suggest storybook stories for UI components
 - **Documentation**:
-  - Component-level JSDoc for complex pieces
-  - Translation key documentation in comments
+    - Component-level JSDoc for complex pieces
+    - Translation key documentation in comments
 
 **Storybook Integration**:
+
 - **Purpose**: Use Storybook for developing and testing UI components in isolation, and for generating interactive, auto-updating documentation.
 - **Setup & Usage**:
-  - Ensure Storybook is integrated into your project build process.
-  - Create stories for every reusable component, covering various states and interactions.
-  - Utilize MDX to combine component examples with markdown documentation.
+    - Ensure Storybook is integrated into your project build process.
+    - Create stories for every reusable component, covering various states and interactions.
+    - Utilize MDX to combine component examples with markdown documentation.
 - **Best Practices**:
-  - Maintain consistency with project conventions in Storybook stories.
-  - Update stories alongside component changes to keep documentation current.
-  - Use addons for accessibility checks, responsive design previews, and interactive testing.
+    - Maintain consistency with project conventions in Storybook stories.
+    - Update stories alongside component changes to keep documentation current.
+    - Use addons for accessibility checks, responsive design previews, and interactive testing.
 - **Testing & Feedback**:
-  - Leverage Storybook’s testing capabilities to run fast, browser-based component tests.
-  - Iterate based on visual feedback from Storybook to ensure high UI quality.
+    - Leverage Storybook’s testing capabilities to run fast, browser-based component tests.
+    - Iterate based on visual feedback from Storybook to ensure high UI quality.
 
 **Component Patterns**:
+
 - Pages: Server components fetching data
 - Layouts: Shared RSC layouts
 - Interactive Elements: Client components with `use client`
@@ -110,6 +119,7 @@
 API → Server Component (fetch) → Props → Client Components
 
 **Avoid**:
+
 - Context API in server components
 - Client-side data fetching unless necessary
 - Any UI framework besides Tailwind
@@ -118,6 +128,7 @@ API → Server Component (fetch) → Props → Client Components
 - Unoptimized image assets
 
 **Validation Requirements**:
+
 1. ESLint TypeScript rules (strict mode)
 2. next-intl message validation
 3. Responsive design breakpoint checks
