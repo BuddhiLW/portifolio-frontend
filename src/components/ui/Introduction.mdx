@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction/UI Components" />
+
+# UI Component Library
+
+This section contains documentation for the reusable UI components used throughout the portfolio application.
+
+## Component Library Structure
+
+The UI components in this project follow a consistent pattern:
+
+- **Core UI Components**: Located in `/src/components/ui/`, these are the foundational building blocks like Button, Carousel, and more.
+- **Shared Components**: Located in `/src/components/shared/`, these are higher-level components used across multiple pages, like Container, Header, and Menu.
+- **Specialized Components**: Grouped by feature in directories like `/src/components/projects/`, `/src/components/chat/`, etc.
+
+## Theming
+
+The application supports both light and dark themes using `next-themes`. Components automatically adapt to the current theme.
+
+## Internationalization
+
+Components that display text use the `next-intl` library for internationalization:
+
+- Server components use `getTranslations()` from 'next-intl/server'
+- Client components use the `useTranslations()` hook
+
+## Accessibility
+
+All interactive components are built with accessibility in mind:
+- Proper keyboard navigation
+- ARIA attributes
+- Semantic HTML
+
+## Usage Guidelines
+
+1. Use server components by default
+2. Add `'use client'` directive only when needed (for interactive components)
+3. Always define TypeScript interfaces for component props
+4. Follow mobile-first responsive design principles
+5. Use Tailwind CSS for styling with the `cn()` utility for class merging
+
+## Contributing New Components
+
+When adding new components:
+1. Create the component in the appropriate directory
+2. Add TypeScript types/interfaces for props
+3. Create a corresponding story file for Storybook documentation
+4. Follow existing patterns for theming and responsiveness
