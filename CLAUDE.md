@@ -50,6 +50,46 @@
 - Prefer passing fully translated strings from server to client when possible
 - For shared components like UI elements, implement language-agnostic interfaces
 
+## Storybook Integration Guidelines
+
+- **Purpose**: Use Storybook for developing and testing UI components in isolation, and for generating interactive, auto-updating documentation.
+- **Setup & Usage**:
+    - Ensure Storybook is integrated into your project build process.
+    - Create stories for every reusable component, covering various states and interactions.
+    - Utilize MDX to combine component examples with markdown documentation.
+- **Best Practices**:
+    - Maintain consistency with project conventions in Storybook stories.
+    - Update stories alongside component changes to keep documentation current.
+    - Use addons for accessibility checks, responsive design previews, and interactive testing.
+- **Testing & Feedback**:
+    - Leverage Storybook's testing capabilities to run fast, browser-based component tests.
+    - Iterate based on visual feedback from Storybook to ensure high UI quality.
+
+- **Creating Storybook Stories**:
+    - All story files must include `"use client"` at the top.
+    - Import decorators from `.storybook/decorators`: `import { WithProviders, WithDarkTheme } from "../../../.storybook/decorators"`.
+    - Apply `WithProviders` decorator at the component level: `decorators: [WithProviders]`.
+    - For dark mode variants, add a specific story with `decorators: [WithDarkTheme]`.
+    - Provide proper args object with realistic mock data for all component props.
+    - Create distinct variants showing different states (Default, WithCustomClass, DarkMode, etc.).
+    - For components that need context (like translation or theme), never rely on direct context - always use the decorators.
+    - Keep story implementations simple and focused on demonstrating the component's API.
+
+- **Theming in Storybook**:
+    - Dark mode is implemented via CSS classes, not CSS variables or media queries.
+    - The `.dark` class is applied to the html element and parent containers.
+    - The decorators handle toggling between light and dark themes.
+    - Use `className="dark:some-class"` for dark mode specific styling in components.
+    - Always test both light and dark themes for each component.
+    - For complex components or ones with backgrounds, use additional decorators to properly display them.
+
+- **Troubleshooting Storybook Issues**:
+    - If colors render incorrectly, check for CSS syntax errors in color values.
+    - If components fail in docs mode but work in canvas mode, ensure decorators are applied consistently.
+    - If TypeScript errors occur, check that types are properly defined and imported.
+    - If context-related errors appear, verify that all required providers are in the decorator chain.
+    - For image-related issues, ensure images are in the public folder and paths are correct.
+
 ## Priming yourself with these rules
 
 **Project Context**  
@@ -91,21 +131,6 @@
 - **Documentation**:
     - Component-level JSDoc for complex pieces
     - Translation key documentation in comments
-
-**Storybook Integration**:
-
-- **Purpose**: Use Storybook for developing and testing UI components in isolation, and for generating interactive, auto-updating documentation.
-- **Setup & Usage**:
-    - Ensure Storybook is integrated into your project build process.
-    - Create stories for every reusable component, covering various states and interactions.
-    - Utilize MDX to combine component examples with markdown documentation.
-- **Best Practices**:
-    - Maintain consistency with project conventions in Storybook stories.
-    - Update stories alongside component changes to keep documentation current.
-    - Use addons for accessibility checks, responsive design previews, and interactive testing.
-- **Testing & Feedback**:
-    - Leverage Storybook’s testing capabilities to run fast, browser-based component tests.
-    - Iterate based on visual feedback from Storybook to ensure high UI quality.
 
 **Component Patterns**:
 

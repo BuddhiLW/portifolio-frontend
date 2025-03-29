@@ -4,6 +4,7 @@ import { obterProjeto } from "@/functions/projetos"
 import SharedCarousel from "@/components/shared/Carousel"
 import { Projeto } from "@core"
 import { Suspense } from "react"
+import Techs from "@/components/tecnologias/Tecnologias"
 
 // Create a separate component for loading project data
 async function ProjectDetails({ id, locale }: { id: string; locale: string }) {
@@ -20,6 +21,9 @@ async function ProjectDetails({ id, locale }: { id: string; locale: string }) {
 			<Container>
 				<h1 className="text-3xl font-bold mb-4">{project.nome}</h1>
 				<SharedCarousel images={images.slice(1)} title={project.nome} />
+				<Container className="my-10 lg:my-15 xl:my-20">
+					<Techs techs={project.tecnologias} />
+				</Container>
 				<div className="mb-2">ID: {project.id}</div>
 				<div className="mb-4">{project.descricao}</div>
 			</Container>

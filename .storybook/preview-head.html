@@ -1,0 +1,38 @@
+<!-- .storybook/preview-head.html -->
+<script>
+  // Force light mode by default
+  document.documentElement.classList.add('light');
+  document.documentElement.classList.remove('dark');
+  
+  // Handle dark mode toggle
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const newColorScheme = e.matches ? 'dark' : 'light';
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(newColorScheme);
+  });
+</script>
+<style>
+  /* Ensure the storybook UI itself has the right background in docs mode */
+  .docs-story {
+    background-color: transparent !important;
+  }
+  
+  /* Set default colors for stories */
+  :root {
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --tech-bg: #fee2e2;
+    --tech-container-bg: rgba(244, 244, 245, 0.8);
+    --tech-container-border: #e4e4e7;
+  }
+  
+  .dark {
+    --background: #1a0505;
+    --foreground: #f8fafc;
+    --text-primary: #f1f1f1;
+    --text-secondary: #a3a3a3;
+    --tech-bg: #450a0a;
+    --tech-container-bg: rgba(0, 0, 0, 0.8);
+    --tech-container-border: #27272a;
+  }
+</style>
