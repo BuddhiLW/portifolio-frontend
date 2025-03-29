@@ -49,3 +49,15 @@ export const WithDifferentTitle: Story = {
 		title: "Another Project Title", // Pass a different title prop
 	},
 }
+
+export const MobileView: Story = {
+	render: (args) => (
+		<div className="w-full max-w-xs mx-auto">
+			<SharedCarousel {...args} />
+		</div>
+	),
+	args: {
+		images: images,
+		title: "Project Title",
+	},
+}

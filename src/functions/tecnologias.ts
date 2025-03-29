@@ -1,7 +1,7 @@
 import { Tecnologia } from "@core"
 import { httpGet } from "./api"
 
-export async function getTech() {
+export async function getTech(): Promise<{ all: Tecnologia[]; featuring: Tecnologia[] }> {
 	const techs: Tecnologia[] = await httpGet("/tecnologias")
 	return {
 		all: techs,
