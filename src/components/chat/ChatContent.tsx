@@ -19,8 +19,8 @@ const ChatContent: React.FC = () => {
 	}, [messages]) // Added messages as dependency
 
 	return (
-		<div>
-			<ul>
+		<div className="flex flex-col flex-grow h-full">
+			<ul className="flex-grow overflow-y-auto">
 				{messages.length === 0 ? (
 					<EmptyContent />
 				) : (
@@ -45,7 +45,7 @@ const ChatContent: React.FC = () => {
 
 			<input
 				type="text"
-				className="w-full border-2 border-gray-300 rounded-md p-2"
+				className="w-full border-2 border-red-500 rounded-md p-2 my-2"
 				value={text}
 				onChange={(e) => {
 					setText(e.target.value)
