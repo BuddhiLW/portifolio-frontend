@@ -189,15 +189,30 @@ body {
 
 @keyframes fadeIn {
 	from {
-		opacity: 0.8;
+		opacity: 0;
 	}
 	to {
 		opacity: 1;
 	}
 }
 
-.animate-fade-in {
-	animation: fadeIn 0.3s ease-in-out;
+@keyframes slideIn {
+	from {
+		transform: translateY(20px); /* Slide in from below */
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+	animation: slideIn 0.5s ease-in-out;
 }
 
 .perspective-1000 {
@@ -274,4 +289,82 @@ body {
 
 [data-badge] > img {
 	@apply m-0;
+}
+
+@keyframes dots {
+	0%,
+	20% {
+		opacity: 0;
+	}
+	20%,
+	80% {
+		opacity: 1;
+	}
+	80%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.loading-dots {
+	display: inline-block;
+}
+
+.loading-dots span {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	margin: 0 2px;
+	border-radius: 50%;
+	background-color: #4a5568; /* Tailwind gray-600 */
+	animation: dots 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+	animation-delay: -0.4s;
+}
+
+.loading-dots span:nth-child(2) {
+	animation-delay: -0.2s;
+}
+
+.chat-bubble {
+	background-color: #e1ffc7; /* Light green background for the message bubble */
+	border-radius: 20px; /* Rounded corners */
+	padding: 10px 15px; /* Padding inside the bubble */
+	max-width: 75%; /* Limit the width of the bubble */
+	margin-left: 50px; /* Space from the left for the user's messages */
+	position: relative; /* For positioning the triangle */
+}
+
+.chat-bubble::after {
+	content: "";
+	position: absolute;
+	bottom: 100%; /* Position above the bubble */
+	left: 10px; /* Adjust as needed */
+	border-width: 10px; /* Size of the triangle */
+	border-style: solid;
+	border-color: transparent transparent #e1ffc7 transparent; /* Triangle color */
+}
+
+.author-box {
+	width: 100px; /* Allow width to adjust based on content */
+	height: 2rem; /* Allow height to adjust based on content */
+	background-color: #f0f0f0; /* Light gray background */
+	border-radius: 10px; /* Rounded corners */
+	padding: 5px 10px; /* Padding inside the box */
+	text-align: center; /* Center the text */
+	margin-right: 10px; /* Space between author box and message */
+	flex-shrink: 0; /* Prevent shrinking */
+	display: inline-flex; /* Use inline-flex to fit content */
+	align-items: center; /* Center content vertically */
+}
+
+/* Limit the maximum width of images in Markdown */
+.markdown img {
+	max-width: 100%; /* Ensure images do not exceed the container width */
+	height: auto; /* Maintain aspect ratio */
+	display: inline-block; /* Ensure images are inline elements */
+	margin: 0 auto; /* Center images */
+	width: auto; /* Allow images to render at their intrinsic size */
 }

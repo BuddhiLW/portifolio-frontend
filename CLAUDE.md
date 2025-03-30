@@ -50,6 +50,56 @@
 - Prefer passing fully translated strings from server to client when possible
 - For shared components like UI elements, implement language-agnostic interfaces
 
+## State Management with LocalStorage
+
+When implementing state that persists with localStorage:
+
+1. **Direct Management Pattern**: For critical storage needs, manage localStorage directly rather than using abstraction hooks:
+   ```typescript
+   // Initialize state from localStorage
+   const [state, setInternalState] = useState(() => {
+     if (typeof window === 'undefined') return initialValue;
+     const stored = localStorage.getItem(key);
+     return stored ? JSON.parse(stored) : initialValue;
+   });
+   
+   // Wrapper function to update both state and localStorage
+   const setState = (newValue) => {
+     const valueToStore = newValue instanceof Function ? newValue(state) : newValue;
+     
+     // Update React state
+     setInternalState(valueToStore);
+     
+     // Update localStorage with proper empty checks
+     if (valueToStore === null || (Array.isArray(valueToStore) && valueToStore.length === 0)) {
+       localStorage.removeItem(key);
+     } else {
+       localStorage.setItem(key, JSON.stringify(valueToStore));
+     }
+   };
+   ```
+
+2. **Force Re-render Pattern**: When localStorage-dependent components need to guarantee fresh state:
+   ```typescript
+   // In parent component
+   const [componentKey, setComponentKey] = useState(0);
+   
+   const handleReset = () => {
+     clearState();
+     // Force child component to completely remount with fresh state
+     setComponentKey(prev => prev + 1);
+   };
+   
+   return <ChildComponent key={componentKey} />;
+   ```
+
+3. **Common Pitfalls to Avoid**:
+   - Don't rely solely on React state updates to sync with localStorage
+   - Always manually remove items from localStorage when clearing state
+   - Be careful with functional updates that depend on previous localStorage state
+   - Remember that localStorage only stores strings, requiring JSON parsing/stringifying
+   - Add SSR safety checks with `typeof window !== 'undefined'`
+
 ## Storybook Integration Guidelines
 
 - **Purpose**: Use Storybook for developing and testing UI components in isolation, and for generating interactive, auto-updating documentation.
