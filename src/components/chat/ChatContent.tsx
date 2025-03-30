@@ -13,7 +13,7 @@ const ChatContent: React.FC = () => {
 		console.log("ChatContent mounted/updated")
 		console.log("Current localStorage:", localStorage.getItem("messages"))
 		console.log("Current messages state:", messages)
-	}, [])
+	}, [messages]) // Added messages as dependency
 
 	return (
 		<div>

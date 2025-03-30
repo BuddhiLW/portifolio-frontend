@@ -6,7 +6,7 @@ import ChatContent from "./ChatContent"
 import { useState } from "react"
 
 export default function ChatWindow() {
-	const { clearMessages, messages } = useChat()
+	const { clearMessages } = useChat()
 	// Add a key to force re-render of ChatContent
 	const [chatKey, setChatKey] = useState(0)
 

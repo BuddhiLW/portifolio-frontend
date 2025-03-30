@@ -54,7 +54,57 @@
 
 When implementing state that persists with localStorage:
 
-1. **Direct Management Pattern**: For critical storage needs, manage localStorage directly rather than using abstraction hooks:
+1. **Centralized Hook Pattern**: For consistent localStorage management across components, use the `useLocalStorage` hook:
+   ```typescript
+   // From src/hooks/useLocalStorage.ts
+   function useLocalStorage<T>(key: string, initialValue: T) {
+     // Initialize state with SSR safety check
+     const [value, setInternalValue] = useState<T>(() => {
+       if (typeof window === 'undefined') return initialValue;
+       try {
+         const item = localStorage.getItem(key);
+         return item ? JSON.parse(item) : initialValue;
+       } catch (error) {
+         console.error(`Error reading localStorage key "${key}":`, error);
+         return initialValue;
+       }
+     });
+
+     // Set value in localStorage and state
+     const setValue = useCallback((newValue: T | ((val: T) => T)) => {
+       try {
+         // If functional update, apply it to current value
+         const valueToStore = newValue instanceof Function ? newValue(value) : newValue;
+         
+         // Save state
+         setInternalValue(valueToStore);
+         
+         // Save to localStorage with empty array check
+         if (typeof window !== 'undefined') {
+           if (valueToStore === null || (Array.isArray(valueToStore) && valueToStore.length === 0)) {
+             localStorage.removeItem(key);
+           } else {
+             localStorage.setItem(key, JSON.stringify(valueToStore));
+           }
+         }
+       } catch (error) {
+         console.error(`Error setting localStorage key "${key}":`, error);
+       }
+     }, [key, value]);
+
+     // Use like this:
+     // const { value, setValue, removeItem } = useLocalStorage("myKey", initialValue);
+     
+     return {
+       value,
+       setValue,
+       removeItem,
+       // Other methods...
+     };
+   }
+   ```
+
+2. **Direct Management Pattern**: For critical storage needs where a hook might add unnecessary abstraction:
    ```typescript
    // Initialize state from localStorage
    const [state, setInternalState] = useState(() => {
@@ -79,7 +129,7 @@ When implementing state that persists with localStorage:
    };
    ```
 
-2. **Force Re-render Pattern**: When localStorage-dependent components need to guarantee fresh state:
+3. **Force Re-render Pattern**: When localStorage-dependent components need to guarantee fresh state:
    ```typescript
    // In parent component
    const [componentKey, setComponentKey] = useState(0);
@@ -93,12 +143,31 @@ When implementing state that persists with localStorage:
    return <ChildComponent key={componentKey} />;
    ```
 
-3. **Common Pitfalls to Avoid**:
+4. **Multi-tab Synchronization**: For state that needs to stay in sync across browser tabs:
+   ```typescript
+   useEffect(() => {
+     const handleStorageChange = (event: StorageEvent) => {
+       if (event.key === key) {
+         // Update local state when another tab changes localStorage
+         setInternalValue(event.newValue ? JSON.parse(event.newValue) : initialValue);
+       }
+     };
+
+     if (typeof window !== 'undefined') {
+       window.addEventListener('storage', handleStorageChange);
+       return () => window.removeEventListener('storage', handleStorageChange);
+     }
+   }, [key, initialValue]);
+   ```
+
+5. **Common Pitfalls to Avoid**:
    - Don't rely solely on React state updates to sync with localStorage
    - Always manually remove items from localStorage when clearing state
    - Be careful with functional updates that depend on previous localStorage state
    - Remember that localStorage only stores strings, requiring JSON parsing/stringifying
    - Add SSR safety checks with `typeof window !== 'undefined'`
+   - Handle errors from localStorage operations (quota exceeded, privacy mode, etc.)
+   - Add proper cleanup for event listeners used for cross-tab synchronization
 
 ## Storybook Integration Guidelines
 

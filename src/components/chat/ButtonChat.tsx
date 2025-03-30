@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import Chat from "@/app/[locale]/(pages)/chat/page"
 import ChatWindow from "./ChatWindow"
 
 export default function ButtonChat() {
