@@ -3,6 +3,7 @@ import React from "react"
 import useChat from "@/hooks/useChat"
 import Message from "@/model/Msg"
 import MarkdownReadme from "@/components/shared/MarkdownReadme"
+import EmptyContent from "@/components/chat/EmptyContent"
 
 const ChatContent: React.FC = () => {
 	const { chatId, messages, isLoading, addMessage } = useChat()
@@ -10,24 +11,28 @@ const ChatContent: React.FC = () => {
 
 	// Get fresh data from localStorage on each render
 	React.useEffect(() => {
-		console.log("ChatContent mounted/updated")
+		{
+			/*console.log("ChatContent mounted/updated")
 		console.log("Current localStorage:", localStorage.getItem("messages"))
-		console.log("Current messages state:", messages)
+		console.log("Current messages state:", messages)*/
+		}
 	}, [messages]) // Added messages as dependency
 
 	return (
 		<div>
-			<h1>Chat</h1>
-			<h2>Chat ID: {chatId}</h2>
 			<ul>
-				{messages.map((message: Message) => (
-					<div key={message.id} className="flex gap-2 fade-in slide-in">
-						<div className="author-box">{message.author}</div>
-						<li className="chat-bubble my-2">
-							<MarkdownReadme markdown={message.content} />
-						</li>
-					</div>
-				))}
+				{messages.length === 0 ? (
+					<EmptyContent />
+				) : (
+					messages.map((message: Message) => (
+						<div key={message.id} className="flex gap-2 fade-in slide-in">
+							<div className="author-box">{message.author}</div>
+							<li className="chat-bubble my-2">
+								<MarkdownReadme markdown={message.content} />
+							</li>
+						</div>
+					))
+				)}
 			</ul>
 
 			{isLoading && (

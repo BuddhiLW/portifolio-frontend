@@ -11,14 +11,18 @@ export default function ChatWindow() {
 	const [chatKey, setChatKey] = useState(0)
 
 	const handleClearMessages = () => {
-		console.log("Clear messages clicked")
+		{
+			/*console.log("Clear messages clicked")*/
+		}
 		// Clear the messages first
 		clearMessages()
 		// Force a re-render of ChatContent by changing the key
-		setChatKey(prevKey => prevKey + 1)
-		
+		setChatKey((prevKey) => prevKey + 1)
+
 		// Force refresh localStorage to verify it's clear
-		console.log("After clear - localStorage:", localStorage.getItem("messages"))
+		{
+			/*console.log("After clear - localStorage:", localStorage.getItem("messages"))*/
+		}
 	}
 
 	return (
