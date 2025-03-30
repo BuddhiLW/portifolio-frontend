@@ -1,16 +1,17 @@
 "use client"
 import useChat from "@/hooks/useChat"
 import { useState } from "react"
-import Message from "@/model/Message"
+import Message from "@/model/Msg"
 
 export default function Chat() {
-	const { chatId, messages, addMessage } = useChat()
+	const { chatId, messages, isLoading, addMessage, clearMessages } = useChat()
 	const [text, setText] = useState("")
 
 	return (
 		<div>
 			<h1>Chat</h1>
-			<h2>{chatId}</h2>
+			<h2>Chat ID: {chatId}</h2>
+			<button onClick={clearMessages}>Clear</button>
 			<ul>
 				{messages.map((message: Message) => (
 					<li key={message.id} className="flex gap-2">
@@ -19,6 +20,7 @@ export default function Chat() {
 					</li>
 				))}
 			</ul>
+			{isLoading && <p>Loading...</p>}
 
 			<input
 				type="text"
