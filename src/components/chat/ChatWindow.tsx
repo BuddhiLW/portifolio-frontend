@@ -27,9 +27,14 @@ export default function ChatWindow() {
 	}
 
 	return (
-		<Container className="flex flex-col bg-zinc-300 rounded-2xl text-back overflow-hidden">
+		<Container
+			className="
+        flex flex-col bg-zinc-300 rounded-2xl text-back overflow-hidden
+        min-h-[80vh] min-w-[40vw] max-w-[100vw]
+        "
+		>
 			<div className="flex justify-between items-center p-4">
-				<h2 className="text-3xl font-bold">Chat</h2>
+				<h2 className="text-3xl font-bold dark:text-zinc-950">Chat</h2>
 				<div className="flex gap-7">
 					<Link href="/chat">
 						<IconArrowAutofitHeightFilled

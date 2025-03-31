@@ -17,11 +17,11 @@ const MarkdownReadme: React.FC<MarkdownReadmeProps> = ({ markdown }) => {
 				// Customizing the default components to add Tailwind CSS classes
 				h1: (props) => <h1 className="text-2xl font-bold" {...props} />,
 				h2: (props) => <h2 className="text-xl font-semibold" {...props} />,
-				p: (props) => <p className="mb-4" {...props} />,
+				p: (props) => <p className="mb-4 text-wrap break-words" {...props} />,
 				img: ({ alt, src }) => (
 					<Image
 						alt={alt || ""}
-						src={src}
+						src={src || ""}
 						layout="responsive"
 						width={500}
 						height={300}

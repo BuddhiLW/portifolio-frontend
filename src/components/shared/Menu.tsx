@@ -2,6 +2,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
+import { IconMenu2 } from "@tabler/icons-react"
+import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover"
 
 export default function Menu() {
 	const path = usePathname()
@@ -21,18 +23,49 @@ export default function Menu() {
 
 	return (
 		<nav className="flex gap-2 ml-2">
-			<MenuItem href={homeUrl} text={t("home")} selected={isHome} />
-			<MenuItem
-				href="/projects/1"
-				text={t("projects")}
-				selected={normalizedPath.startsWith("/projects")}
-			/>
-			<MenuItem
-				href="https://api.whatsapp.com/send/?phone=5516993401215&text&type=phone_number&app_absent=0"
-				text={t("contact")}
-				selected={false}
-				newTab={true}
-			/>
+			{/* Dropdown button for mobile view */}
+			<Popover>
+				<PopoverTrigger>
+					<button
+						className="
+						px-2 py-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300
+						sm:hidden
+						"
+					>
+						<IconMenu2 size={24} />
+					</button>
+				</PopoverTrigger>
+				<PopoverContent className="absolute top-2 w-48 bg-white shadow-lg rounded-md z-10">
+					<MenuItem href={homeUrl} text={t("home")} selected={isHome} />
+					<MenuItem
+						href="/projects/1"
+						text={t("projects")}
+						selected={normalizedPath.startsWith("/projects")}
+					/>
+					<MenuItem
+						href="https://api.whatsapp.com/send/?phone=5516993401215&text&type=phone_number&app_absent=0"
+						text={t("contact")}
+						selected={false}
+						newTab={true}
+					/>
+				</PopoverContent>
+			</Popover>
+
+			{/* Desktop view */}
+			<div className="hidden sm:flex">
+				<MenuItem href={homeUrl} text={t("home")} selected={isHome} />
+				<MenuItem
+					href="/projects/1"
+					text={t("projects")}
+					selected={normalizedPath.startsWith("/projects")}
+				/>
+				<MenuItem
+					href="https://api.whatsapp.com/send/?phone=5516993401215&text&type=phone_number&app_absent=0"
+					text={t("contact")}
+					selected={false}
+					newTab={true}
+				/>
+			</div>
 		</nav>
 	)
 }
@@ -53,7 +86,7 @@ function MenuItem(props: { href: string; text: string; selected: boolean; newTab
 					transition-all duration-300
 				`}
 			>
-				{props.text}
+				<p className="text-sm dark:text-zinc-950">{props.text}</p>
 			</span>
 		</Link>
 	)

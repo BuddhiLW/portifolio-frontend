@@ -347,19 +347,6 @@ body {
 	border-color: transparent transparent #e1ffc7 transparent; /* Triangle color */
 }
 
-.author-box {
-	width: 100px; /* Allow width to adjust based on content */
-	height: 2rem; /* Allow height to adjust based on content */
-	background-color: #f0f0f0; /* Light gray background */
-	border-radius: 10px; /* Rounded corners */
-	padding: 5px 10px; /* Padding inside the box */
-	text-align: center; /* Center the text */
-	margin-right: 10px; /* Space between author box and message */
-	flex-shrink: 0; /* Prevent shrinking */
-	display: inline-flex; /* Use inline-flex to fit content */
-	align-items: center; /* Center content vertically */
-}
-
 /* Limit the maximum width of images in Markdown */
 .markdown img {
 	max-width: 100%; /* Ensure images do not exceed the container width */
@@ -367,4 +354,55 @@ body {
 	display: inline-block; /* Ensure images are inline elements */
 	margin: 0 auto; /* Center images */
 	width: auto; /* Allow images to render at their intrinsic size */
+}
+
+/* Chat bubble styles */
+.chat-bubble-left {
+	background-color: #e5e7eb; /* Zinc background for incoming messages (light gray) */
+	border-radius: 20px; /* Rounded corners */
+	padding: 10px 15px; /* Padding inside the bubble */
+	max-width: 75%; /* Limit the width of the bubble */
+	margin-left: 10px; /* Space from the left for incoming messages */
+	margin-right: auto; /* Align to the left */
+	position: relative; /* For positioning the triangle */
+	transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.chat-bubble-left:hover {
+	background-color: #d1d5db; /* Darker gray on hover */
+}
+
+.chat-bubble-left::after {
+	content: "";
+	position: absolute;
+	bottom: 100%; /* Position above the bubble */
+	left: 1.5rem; /* Adjust as needed */
+	border-width: 10px; /* Size of the triangle */
+	border-style: solid;
+	border-color: transparent transparent #e5e7eb transparent; /* Triangle color */
+}
+
+.chat-bubble-right {
+	background-color: #97ff97; /* Light green background for outgoing messages */
+	border-radius: 20px; /* Rounded corners */
+	padding: 10px 15px; /* Padding inside the bubble */
+	max-width: 75%; /* Limit the width of the bubble */
+	margin-left: auto; /* Align to the right */
+	margin-right: 10px; /* Space from the right for outgoing messages */
+	position: relative; /* For positioning the triangle */
+	transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.chat-bubble-right:hover {
+	background-color: #85e085; /* Darker green on hover */
+}
+
+.chat-bubble-right::after {
+	content: "";
+	position: absolute;
+	bottom: 100%; /* Position above the bubble */
+	right: 1.5rem; /* Adjust as needed */
+	border-width: 10px; /* Size of the triangle */
+	border-style: solid;
+	border-color: transparent transparent #97ff97 transparent; /* Triangle color */
 }

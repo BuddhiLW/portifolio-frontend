@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import Menu from "./Menu"
 import ThemeToggle from "../ThemeToggle"
+import { IconBrandLinkedin } from "@tabler/icons-react"
 
 export default function Header() {
 	const t = useTranslations()
@@ -32,7 +33,14 @@ export default function Header() {
 					<Link
 						href="https://www.linkedin.com/in/pedro-g-branquinho/"
 						target="_blank"
-						className="bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-full px-7 py-1 text-sm transition-colors duration-300"
+						className="sm:hidden"
+					>
+						<IconBrandLinkedin size={24} className="text-blue-600" />
+					</Link>
+					<Link
+						href="https://www.linkedin.com/in/pedro-g-branquinho/"
+						target="_blank"
+						className="hidden sm:block"
 					>
 						{t("header.profile")}
 					</Link>
