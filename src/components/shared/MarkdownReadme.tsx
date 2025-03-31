@@ -8,6 +8,11 @@ interface MarkdownReadmeProps {
 	markdown: string // Markdown content to render
 }
 
+// Extend the existing props to include custom attributes
+interface CustomDivProps extends React.HTMLProps<HTMLDivElement> {
+	"data-badges"?: string // Add the data-badges attribute
+}
+
 const MarkdownReadme: React.FC<MarkdownReadmeProps> = ({ markdown }) => {
 	return (
 		<ReactMarkdown
@@ -18,6 +23,30 @@ const MarkdownReadme: React.FC<MarkdownReadmeProps> = ({ markdown }) => {
 				h1: (props) => <h1 className="text-2xl font-bold" {...props} />,
 				h2: (props) => <h2 className="text-xl font-semibold" {...props} />,
 				p: (props) => <p className="text-wrap break-words" {...props} />,
+				div: (props: CustomDivProps) => {
+					// Check for the presence of the data-badges attribute
+					if (props["data-badges"] === "") {
+						return (
+							<div
+								className="flex flex-row gap-2 items-center mb-0 pb-0"
+								style={{ width: "auto", height: "auto" }}
+								{...props}
+							>
+								{/* Apply styles to make badges the same size as the original images */}
+								{React.Children.map(props.children, (child) => (
+									<div
+										className="flex items-center"
+										style={{ width: "auto", height: "auto" }}
+									>
+										{child}
+									</div>
+								))}
+							</div>
+						)
+					} else {
+						return <div className="text-wrap break-words" {...props} />
+					}
+				},
 				img: ({ alt, src }) => (
 					<Image
 						alt={alt || ""}

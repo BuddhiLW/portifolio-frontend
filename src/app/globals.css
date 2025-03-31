@@ -282,13 +282,17 @@ body {
 }
 
 [data-badges] {
-	@apply flex flex-wrap justify-center gap-2 p-1;
+	@apply justify-center gap-2;
+	width: fit-content; /* Ensure the width fits the content */
+	height: fit-content; /* Ensure the height fits the content */
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 [data-badge] > img {
-	@apply m-0;
+	@apply m-0; /* Remove margin for images inside badges */
+	width: auto; /* Allow images to render at their intrinsic size */
+	height: auto; /* Maintain aspect ratio */
 }
 
 @keyframes dots {

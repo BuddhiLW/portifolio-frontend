@@ -1,5 +1,5 @@
 import { Projeto, Tipo } from "@buddhilw/core"
-import { httpGet } from "./api"
+import { FetchOptions, httpGet } from "./api"
 
 interface ProjetosResult {
 	all: Projeto[]
@@ -12,8 +12,8 @@ interface ProjetosResult {
 	others: Projeto[]
 }
 
-export async function getProjects(): Promise<ProjetosResult | null> {
-	const projects: Projeto[] = await httpGet("/projetos")
+export async function getProjects(options?: FetchOptions): Promise<ProjetosResult | null> {
+	const projects: Projeto[] = await httpGet("/projetos", undefined, options)
 
 	return {
 		all: projects,
@@ -41,6 +41,6 @@ export async function getProjects(): Promise<ProjetosResult | null> {
 	}
 }
 
-export async function obterProjeto(id: string, locale?: string): Promise<Projeto | null> {
-	return await httpGet(`/projetos/${id}`, locale ? { locale } : undefined)
+export async function obterProjeto(id: string, locale?: string, options?: FetchOptions): Promise<Projeto | null> {
+	return await httpGet(`/projetos/${id}`, locale ? { locale } : undefined, options)
 }

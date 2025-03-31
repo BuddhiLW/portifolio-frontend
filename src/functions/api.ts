@@ -1,6 +1,16 @@
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 
-export async function httpGet<T>(endpoint: string, params?: Record<string, string>): Promise<T> {
+export interface FetchOptions {
+	revalidate?: number | false;
+	cache?: 'force-cache' | 'no-store';
+	tags?: string[];
+}
+
+export async function httpGet<T>(
+	endpoint: string, 
+	params?: Record<string, string>, 
+	options: FetchOptions = { revalidate: 86400 } // Default to 24h revalidation
+): Promise<T> {
 	if (!baseURL) {
 		throw new Error("API URL is not configured. Please check NEXT_PUBLIC_API_URL in .env")
 	}
@@ -14,7 +24,18 @@ export async function httpGet<T>(endpoint: string, params?: Record<string, strin
 		})
 	}
 
-	const response = await fetch(url.toString())
+	const response = await fetch(url.toString(), {
+		next: {
+			revalidate: options.revalidate,
+			tags: options.tags
+		},
+		cache: options.cache || (options.revalidate === false ? 'no-store' : 'force-cache')
+	})
+	
+	if (!response.ok) {
+		throw new Error(`API request failed with status ${response.status}`)
+	}
+	
 	return await response.json()
 }
 
