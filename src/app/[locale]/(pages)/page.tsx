@@ -1,4 +1,3 @@
-export const revalidate = 3600 * 24
 import Curriculum from "@/components/curriculum"
 import Main from "@/components/landing/Main"
 import Projects from "@/components/projects/Projects"
