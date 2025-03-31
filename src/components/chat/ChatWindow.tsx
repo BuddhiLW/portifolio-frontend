@@ -6,18 +6,15 @@ import ChatContent from "./ChatContent"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useTranslations } from "next-intl"
-import { usePathname } from "next/navigation"
 
 export default function ChatWindow() {
 	const { clearMessages, forceUpdate } = useChat()
 	const [chatKey, setChatKey] = useState(0)
 	const t = useTranslations("ChatWindow")
-	const pathname = usePathname()
-	const isChatPage = pathname.endsWith("/chat") // Determine if on chat page
 
 	// Update chatKey when forceUpdate changes to force re-render
 	useEffect(() => {
-		setChatKey(prev => prev + 1)
+		setChatKey((prev) => prev + 1)
 	}, [forceUpdate])
 
 	const handleClearMessages = () => {
@@ -25,7 +22,7 @@ export default function ChatWindow() {
 		// Clear the messages first
 		clearMessages()
 		// ChatContent will rerender automatically because of the custom event system
-		
+
 		console.log("After clear - localStorage:", localStorage.getItem("messages"))
 	}
 

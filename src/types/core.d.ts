@@ -30,4 +30,8 @@ declare module "@core" {
 		imagem: string
 		destaque: boolean
 	}
+
+	export class Id {
+		static generate(): string
+	}
 }

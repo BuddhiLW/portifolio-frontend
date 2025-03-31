@@ -1,3 +1,5 @@
+export const revalidate = 3600 * 24
+
 import Container from "@/components/shared/Container"
 import Header from "@/components/shared/Header"
 import { obterProjeto } from "@/functions/projetos"

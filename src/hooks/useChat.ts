@@ -15,13 +15,13 @@ export default function useChat() {
 	const messagesStorage = useLocalStorage<Message[]>("messages", [])
 	const [isLoading, setIsLoading] = useState(false)
 	const t = useTranslations("useChat")
-	
+
 	// Force component to re-read from localStorage
 	const [forceUpdate, setForceUpdate] = useState(0)
-	
+
 	// Function to dispatch custom event when chat updates
 	const dispatchChatUpdate = useCallback(() => {
-		if (typeof window !== 'undefined') {
+		if (typeof window !== "undefined") {
 			window.dispatchEvent(new CustomEvent(CHAT_UPDATED_EVENT))
 		}
 	}, [])
@@ -30,10 +30,10 @@ export default function useChat() {
 	useEffect(() => {
 		const handleChatUpdate = () => {
 			// Force re-read from localStorage
-			setForceUpdate(prev => prev + 1)
+			setForceUpdate((prev) => prev + 1)
 		}
 
-		if (typeof window !== 'undefined') {
+		if (typeof window !== "undefined") {
 			window.addEventListener(CHAT_UPDATED_EVENT, handleChatUpdate)
 			return () => window.removeEventListener(CHAT_UPDATED_EVENT, handleChatUpdate)
 		}
@@ -41,7 +41,7 @@ export default function useChat() {
 
 	// Get latest messages directly from localStorage
 	const getLatestMessages = useCallback(() => {
-		if (typeof window === 'undefined') return []
+		if (typeof window === "undefined") return []
 		try {
 			const storedMessages = localStorage.getItem("messages")
 			return storedMessages ? JSON.parse(storedMessages) : []
@@ -67,11 +67,11 @@ export default function useChat() {
 
 			// Get latest messages directly from localStorage
 			const latestMessages = getLatestMessages()
-			
+
 			// Update messages with new user message
 			const currentMessages = [...latestMessages, newMessage]
 			messagesStorage.setValue(currentMessages)
-			
+
 			// Notify all components about the update
 			dispatchChatUpdate()
 
@@ -91,10 +91,10 @@ export default function useChat() {
 
 			// Get latest messages again to ensure we have the most up-to-date state
 			const updatedMessages = getLatestMessages()
-			
+
 			// Update messages with both user and bot messages
 			messagesStorage.setValue([...updatedMessages, botMessage])
-			
+
 			// Notify all components about the update
 			dispatchChatUpdate()
 		} catch (error) {
