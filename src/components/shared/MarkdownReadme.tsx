@@ -44,7 +44,7 @@ const MarkdownReadme: React.FC<MarkdownReadmeProps> = ({ markdown }) => {
 							</div>
 						)
 					} else {
-						return <div className="text-wrap break-words" {...props} />
+						return <div {...props} />
 					}
 				},
 				img: ({ alt, src }) => (
