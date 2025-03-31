@@ -26,7 +26,7 @@ export default function ButtonChat() {
 				side="top"
 				align="end"
 				sideOffset={2}
-				className="w-10/12 sm:w-[500px] bg-transparent border-none p-0 my-2"
+				className="w-4/12 sm:w-11/12 md:w-11/12 s bg-transparent border-none p-0 my-2  md:translate-x-[-10%]"
 			>
 				<ChatWindow />
 			</PopoverContent>

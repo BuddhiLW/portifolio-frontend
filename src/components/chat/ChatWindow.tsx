@@ -30,7 +30,10 @@ export default function ChatWindow() {
 		<Container
 			className="
         flex flex-col bg-zinc-300 rounded-2xl text-back overflow-hidden
-        min-h-[80vh] min-w-[40vw] max-w-[100vw]
+        sm:min-h-[80vh] sm:min-w-[40vw] sm:max-w-[100vw]
+		md:min-h-[70vh] md:max-w-[70vw] 
+		lg:min-h-[70vh] lg:max-w-[70vw]
+		xl:min-h-[70vh] xl:max-w-[70vw]
         "
 		>
 			<div className="flex justify-between items-center p-4">

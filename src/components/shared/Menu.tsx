@@ -75,18 +75,18 @@ function MenuItem(props: { href: string; text: string; selected: boolean; newTab
 		<Link href={props.href} target={props.newTab ? "_blank" : "_self"}>
 			<span
 				className={`
-					flex items-center text-sm px-2 py-2 
-					rounded-full
+					flex items-center text-sm px-3 mx-1 ms:mx-2  py-2 
+					rounded-full  
 					${
 						props.selected
 							? "bg-black/10 dark:bg-white/10 font-medium border-b-2 border-red-600"
-							: "hover:bg-black/5 dark:hover:bg-white/5"
+							: "hover:bg-black/5 dark:hover:bg-white/5 dark:bg-black/20"
 					}
 					hover:opacity-100
 					transition-all duration-300
 				`}
 			>
-				<p className="text-sm dark:text-zinc-950">{props.text}</p>
+				<p className="text-sm text-zinc-950 dark:text-white ">{props.text}</p>
 			</span>
 		</Link>
 	)
