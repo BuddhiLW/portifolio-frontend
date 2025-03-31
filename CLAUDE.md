@@ -169,6 +169,138 @@ When implementing state that persists with localStorage:
    - Handle errors from localStorage operations (quota exceeded, privacy mode, etc.)
    - Add proper cleanup for event listeners used for cross-tab synchronization
 
+## Custom Event System for Component Synchronization
+
+For components that need to stay in sync with shared state (like chat messages), implement a custom event system:
+
+```typescript
+// 1. Define a custom event constant
+const CUSTOM_EVENT_NAME = "stateUpdated";
+
+// 2. Create a dispatcher function in your hook
+const dispatchStateUpdate = useCallback(() => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent(CUSTOM_EVENT_NAME));
+  }
+}, []);
+
+// 3. Add a listener in components that need to react
+useEffect(() => {
+  const handleStateUpdate = () => {
+    // Force re-read from localStorage or update local state
+    setForceUpdate(prev => prev + 1);
+  };
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener(CUSTOM_EVENT_NAME, handleStateUpdate);
+    return () => window.removeEventListener(CUSTOM_EVENT_NAME, handleStateUpdate);
+  }
+}, []);
+
+// 4. Dispatch the event whenever state changes
+const updateState = () => {
+  // Update localStorage
+  localStorage.setItem(key, JSON.stringify(newValue));
+  
+  // Notify all components
+  dispatchStateUpdate();
+};
+```
+
+### Implementation Example for Chat Components
+
+For complex state like chat messages that are shared across multiple components:
+
+1. **Central Hook Pattern with Events**:
+   ```typescript
+   // In useChat.ts
+   export default function useChat() {
+     // Use LocalStorage hook for persistence
+     const messagesStorage = useLocalStorage<Message[]>("messages", []);
+     const [forceUpdate, setForceUpdate] = useState(0);
+     
+     // Create custom event dispatcher
+     const dispatchChatUpdate = useCallback(() => {
+       if (typeof window !== 'undefined') {
+         window.dispatchEvent(new CustomEvent("chatUpdated"));
+       }
+     }, []);
+     
+     // Listen for updates from other components
+     useEffect(() => {
+       const handleChatUpdate = () => {
+         setForceUpdate(prev => prev + 1);
+       };
+       
+       if (typeof window !== 'undefined') {
+         window.addEventListener("chatUpdated", handleChatUpdate);
+         return () => window.removeEventListener("chatUpdated", handleChatUpdate);
+       }
+     }, []);
+     
+     // Get latest data directly from localStorage
+     const getLatestMessages = useCallback(() => {
+       if (typeof window === 'undefined') return [];
+       try {
+         const stored = localStorage.getItem("messages");
+         return stored ? JSON.parse(stored) : [];
+       } catch (error) {
+         console.error("Error reading from localStorage:", error);
+         return [];
+       }
+     }, []);
+     
+     // Add message with proper synchronization
+     const addMessage = async (content: string) => {
+       // Get fresh data before update
+       const latestMessages = getLatestMessages();
+       
+       // Update with new message
+       messagesStorage.setValue([...latestMessages, newMessage]);
+       
+       // Notify all components
+       dispatchChatUpdate();
+     };
+     
+     return {
+       messages: messagesStorage.value,
+       addMessage,
+       clearMessages: messagesStorage.removeItem,
+       forceUpdate, // Expose to components
+     };
+   }
+   ```
+
+2. **Component Implementation**:
+   ```tsx
+   // In ChatComponent.tsx
+   const ChatComponent = () => {
+     const { messages, forceUpdate } = useChat();
+     const [renderKey, setRenderKey] = useState(0);
+     
+     // Re-render when forceUpdate changes
+     useEffect(() => {
+       setRenderKey(prev => prev + 1);
+     }, [forceUpdate]);
+     
+     return (
+       <div key={renderKey}>
+         {messages.map(message => (
+           <MessageItem key={message.id} message={message} />
+         ))}
+       </div>
+     );
+   };
+   ```
+
+3. **Component Composition Best Practices**:
+   - Create a clear hierarchy (Container → Content → Input)
+   - Each component should have a single responsibility
+   - Parent components pass callbacks to children
+   - Use the shared hook for state across components
+   - Add key props tied to forceUpdate for guaranteed re-renders
+   - Log state changes for debugging complex interactions
+
 ## Storybook Integration Guidelines
 
 - **Purpose**: Use Storybook for developing and testing UI components in isolation, and for generating interactive, auto-updating documentation.
