@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
 			},
 		],
 	},
+	experimental: {
+		transpilePackages: ["@buddhilw/core"],
+	},
 }
 
 export default withNextIntl(nextConfig)
