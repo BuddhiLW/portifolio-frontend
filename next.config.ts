@@ -4,18 +4,15 @@ import type { NextConfig } from "next"
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts")
 
 const nextConfig: NextConfig = {
-	/* config options here */
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "**",
-			},
-		],
-	},
-	experimental: {
-		transpilePackages: ["@buddhilw/core"],
-	},
+  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
 }
 
 export default withNextIntl(nextConfig)
