@@ -1,121 +1,92 @@
 "use client"
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import useChat from "@/hooks/useChat"
 import Message from "@/model/Msg"
-import MarkdownReadme from "@/components/shared/MarkdownReadme"
 import EmptyContent from "@/components/chat/EmptyContent"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
+import ChatAuthor from "./ChatAuthor"
+import ChatMessage from "./ChatMessage"
+import Container from "@/components/shared/Container"
+import ChatInput from "./ChatInput"
 
 const ChatContent: React.FC = () => {
-	const { chatId, messages, isLoading, addMessage } = useChat()
-	const [text, setText] = React.useState("")
-
-	// Get fresh data from localStorage on each render
-	React.useEffect(() => {
-		{
-			/*console.log("ChatContent mounted/updated")
-		console.log("Current localStorage:", localStorage.getItem("messages"))
-		console.log("Current messages state:", messages)*/
-		}
-	}, [messages]) // Added messages as dependency
-
+	const { messages, isLoading, addMessage, forceUpdate } = useChat()
+	const chatEndRef = useRef<HTMLDivElement>(null)
+	const t = useTranslations("ChatContent")
 	const pathname = usePathname()
-	console.log(pathname)
-
+	
+	// Create a local state to force rerenders
+	const [renderKey, setRenderKey] = useState(0)
+	
 	// Check if the pathname ends with "/chat"
 	const isChatPage = pathname.endsWith("/chat")
+	
+	// Get fresh data from localStorage on each render
+	useEffect(() => {
+		// Get the latest messages from localStorage
+		const latestMessages = localStorage.getItem("messages")
+		console.log("ChatContent updated, messages length:", messages.length)
+		console.log("Latest localStorage:", latestMessages ? JSON.parse(latestMessages).length : 0)
+		
+		// Force rerender when forceUpdate changes
+		setRenderKey(prev => prev + 1)
+	}, [forceUpdate, messages]) // React to both messages and forceUpdate changes
+	
+	useEffect(() => {
+		// Scroll to the bottom of the chat when messages change
+		chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
+	}, [messages, renderKey]) // Ensure this runs whenever messages or renderKey change
+	
+	const handleSendMessage = (message: string) => {
+		console.log("Sending message from ChatContent:", message)
+		addMessage(message)
+	}
 
 	return (
 		<div
-			className={`flex flex-col flex-grow h-full max-h-[60vh] overflow-hidden
-            ${isChatPage ? "max-h-[100vh]" : "max-h-[72vh]"}
+			className={`flex flex-col flex-grow h-full overflow-hidden
+            ${isChatPage ? "max-h-[100vh]" : "max-h-[60vh]"}
         `}
 		>
-			<ul
-				className={`flex-grow overflow-y-auto max-h-[60%]
-            ${isChatPage ? "max-h-[100vh]" : "max-h-[72vh]"}
+			<div className="flex-grow overflow-y-auto">
+				<ul
+					className={`flex-grow overflow-y-auto 
+            ${isChatPage ? "max-h-[70vh]" : "max-h-[50vh]"}
             `}
-			>
-				{messages.length === 0 ? (
-					<EmptyContent />
-				) : (
-					messages.map((message: Message) => (
-						<div
-							key={message.id}
-							className={`flex flex-col gap-5 mb-5 fade-in slide-in`}
-						>
-							{message.side === "right" ? (
-								<div
-									className="
-                                dark:text-zinc-800 font-bold bg-green-400 h-10 w-16 rounded-md
-                                flex items-center justify-center self-end
-                                "
-								>
-									{message.author}
-								</div>
-							) : (
-								<div
-									className="
-                                dark:text-zinc-800 font-bold bg-red-400 h-10 w-30 rounded-md
-                                flex items-center justify-center
-                                "
-								>
-									{message.author}
-								</div>
-							)}
+				>
+					{messages.length === 0 ? (
+						<EmptyContent />
+					) : (
+						messages.map((message: Message) => (
+							<div
+								key={message.id}
+								className={`flex flex-col gap-5 mb-5 fade-in slide-in`}
+							>
+								<ChatAuthor author={message.author} side={message.side} />
+								<ChatMessage content={message.content} side={message.side} />
+							</div>
+						))
+					)}
+					<div ref={chatEndRef} /> {/* This div is used for scrolling */}
+				</ul>
 
-							{message.side === "right" ? (
-								<li
-									className="
-                                    chat-bubble-right
-                                    bg-white dark:bg-black text-black dark:text-zinc-950 rounded-md
-                                    font-sans font-medium text-lg
-                                    "
-								>
-									<MarkdownReadme markdown={message.content} />
-								</li>
-							) : (
-								<li
-									className="
-                                    chat-bubble-left 
-                                    bg-white dark:bg-black text-black dark:text-zinc-950 rounded-md p-2
-                                    font-sans font-medium text-lg
-                                    "
-								>
-									<MarkdownReadme markdown={message.content} />
-								</li>
-							)}
+				<Container>
+					{isLoading && (
+						<div className="loading-dots text-white bg-gray-100 dark:bg-white-500 dark:text-black rounded-full px-2 py-1">
+							<span></span>
+							<span></span>
+							<span></span>
 						</div>
-					))
-				)}
-			</ul>
-
-			{isLoading && (
-				<div className="loading-dots">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			)}
-
-			<div className="flex items-center justify-center pb-10">
-				<input
-					type="text"
-					className="w-full border-2 border-gray-300 dark:border-gray-600 rounded-md p-3 my-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-300"
-					value={text}
-					placeholder="Type your message here..."
-					maxLength={200}
-					onChange={(e) => {
-						setText(e.target.value)
-					}}
-					onKeyDown={(e) => {
-						if (e.key === "Enter" && text.trim()) {
-							addMessage(text)
-							setText("")
-						}
-					}}
-				/>
+					)}
+				</Container>
 			</div>
+			
+			<ChatInput
+				placeholder={t("placeholder")}
+				isChatPage={isChatPage}
+				onSend={handleSendMessage}
+			/>
 		</div>
 	)
 }

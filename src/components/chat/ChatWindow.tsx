@@ -3,27 +3,30 @@ import { IconArrowAutofitHeightFilled, IconReload } from "@tabler/icons-react"
 import Container from "../shared/Container"
 import useChat from "@/hooks/useChat"
 import ChatContent from "./ChatContent"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
 
 export default function ChatWindow() {
-	const { clearMessages } = useChat()
-	// Add a key to force re-render of ChatContent
+	const { clearMessages, forceUpdate } = useChat()
 	const [chatKey, setChatKey] = useState(0)
+	const t = useTranslations("ChatWindow")
+	const pathname = usePathname()
+	const isChatPage = pathname.endsWith("/chat") // Determine if on chat page
+
+	// Update chatKey when forceUpdate changes to force re-render
+	useEffect(() => {
+		setChatKey(prev => prev + 1)
+	}, [forceUpdate])
 
 	const handleClearMessages = () => {
-		{
-			/*console.log("Clear messages clicked")*/
-		}
+		console.log("Clear messages clicked")
 		// Clear the messages first
 		clearMessages()
-		// Force a re-render of ChatContent by changing the key
-		setChatKey((prevKey) => prevKey + 1)
-
-		// Force refresh localStorage to verify it's clear
-		{
-			/*console.log("After clear - localStorage:", localStorage.getItem("messages"))*/
-		}
+		// ChatContent will rerender automatically because of the custom event system
+		
+		console.log("After clear - localStorage:", localStorage.getItem("messages"))
 	}
 
 	return (
@@ -34,7 +37,7 @@ export default function ChatWindow() {
         "
 		>
 			<div className="flex justify-between items-center p-4">
-				<h2 className="text-3xl font-bold dark:text-zinc-950">Chat</h2>
+				<h2 className="text-3xl font-bold dark:text-zinc-950">{t("title")}</h2>
 				<div className="flex gap-7">
 					<Link href="/chat">
 						<IconArrowAutofitHeightFilled

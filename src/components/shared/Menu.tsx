@@ -26,14 +26,14 @@ export default function Menu() {
 			{/* Dropdown button for mobile view */}
 			<Popover>
 				<PopoverTrigger>
-					<button
+					<div
 						className="
 						px-2 py-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300
 						sm:hidden
 						"
 					>
 						<IconMenu2 size={24} />
-					</button>
+					</div>
 				</PopoverTrigger>
 				<PopoverContent className="absolute top-2 w-48 bg-white shadow-lg rounded-md z-10">
 					<MenuItem href={homeUrl} text={t("home")} selected={isHome} />

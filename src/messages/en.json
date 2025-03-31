@@ -69,5 +69,19 @@
 		"notFound": "Project not found",
 		"details": "Project Details",
 		"backToProjects": "Back to Projects"
+	},
+	"ChatContent": {
+		"placeholder": "Type your message here..."
+	},
+	"ChatWindow": {
+		"title": "Chat"
+	},
+	"EmptyContent": {
+		"startConversation": "Start a conversation!",
+		"typeMessage": "Type your message below to begin chatting."
+	},
+	"useChat": {
+		"user": "User",
+		"assistant": "Assistant"
 	}
 }
