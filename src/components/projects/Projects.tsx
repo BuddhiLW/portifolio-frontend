@@ -1,6 +1,6 @@
 "use client"
 
-import { Projeto } from "@core"
+import { Projeto } from "@buddhilw/core"
 import Project from "./Item"
 import {
 	Carousel,

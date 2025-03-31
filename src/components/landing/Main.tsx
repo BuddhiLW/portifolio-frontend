@@ -1,7 +1,7 @@
 "use client"
 
 import Header from "@/components/shared/Header"
-import { Tecnologia } from "@core"
+import { Tecnologia } from "@buddhilw/core"
 import { useTranslations } from "next-intl"
 import Techs from "../tecnologias/Tecnologias"
 

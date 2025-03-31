@@ -1,5 +1,5 @@
 "use client"
-import { Id } from "@core"
+import { Id } from "@buddhilw/core"
 import Message from "@/model/Msg"
 import { chat } from "@/functions/chat"
 import { useState, useCallback, useEffect } from "react"

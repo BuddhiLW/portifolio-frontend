@@ -1,6 +1,6 @@
 "use client"
 
-import { Tecnologia } from "@core"
+import { Tecnologia } from "@buddhilw/core"
 
 export interface UsedTechProps {
 	techs: Tecnologia[]

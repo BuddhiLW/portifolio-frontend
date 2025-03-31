@@ -1,4 +1,4 @@
-import { Projeto, Tipo } from "@core"
+import { Projeto, Tipo } from "@buddhilw/core"
 import { httpGet } from "./api"
 
 interface ProjetosResult {

@@ -1,4 +1,4 @@
-import { Tecnologia } from "@core"
+import { Tecnologia } from "@buddhilw/core"
 import Image from "next/image"
 
 export interface TechsProps {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Tecnologia } from "@core"
+import { Tecnologia } from "@buddhilw/core"
 import UsedTechs from "./UsedTech"
 import Experience from "./Experience"
 import MiniCurriculum from "./MiniCurriculum"
