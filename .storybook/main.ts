@@ -1,68 +1,56 @@
-import { StorybookConfig } from "@storybook/nextjs"
-import path from 'path';
+import { StorybookConfig } from "@storybook/experimental-nextjs-vite";
+import path from "path";
+import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
-	stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-themes",
+  ],
+  framework: "@storybook/experimental-nextjs-vite",
+  staticDirs: ["../public"],
+  docs: {
+    autodocs: true,
+  },
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
+    check: false,
+  },
+  
+  // Configure Vite for path resolution
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      define: {
+        'process.env': process.env,
+      },
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+          '@/hooks/useChat': path.resolve(__dirname, './mocks/hooks/useChat.ts'),
+          '@/lib/utils': path.resolve(__dirname, './mocks/lib/utils.ts'),
+          '@/components/ui/button': path.resolve(__dirname, './mocks/components/ui/button.tsx'),
+          '@/components/ui/carousel': path.resolve(__dirname, './mocks/components/ui/carousel.tsx'),
+          '@/components/chat/EmptyContent': path.resolve(__dirname, './mocks/components/chat/EmptyContent.tsx'),
+          '@/components/shared/MarkdownReadme': path.resolve(__dirname, './mocks/components/shared/MarkdownReadme.tsx'),
+          '@/components/shared/Container': path.resolve(__dirname, './mocks/components/shared/Container.tsx'),
+          '@/model/Msg': path.resolve(__dirname, './mocks/model/Msg.ts'),
+          '@/hooks': path.resolve(__dirname, '../src/hooks'),
+          '@/components': path.resolve(__dirname, '../src/components'),
+          '@/functions': path.resolve(__dirname, '../src/functions'),
+          '@/model': path.resolve(__dirname, '../src/model'),
+          '@/lib': path.resolve(__dirname, '../src/lib'),
+          '@core': path.resolve(__dirname, '../src/types/core.d.ts'),
+          '../core': path.resolve(__dirname, './mocks/core-proxy.js'),
+          '@buddhilw/core': path.resolve(__dirname, './mocks/buddhilw-core.js'),
+        }
+      },
+      optimizeDeps: {
+        include: ['next-intl', 'next-themes'],
+      },
+    });
+  }
+};
 
-	addons: [
-		"@storybook/addon-essentials",
-		"@storybook/addon-onboarding",
-		"@chromatic-com/storybook",
-		"@storybook/experimental-addon-test",
-		"@storybook/addon-mdx-gfm",
-	],
-
-	framework: {
-		name: "@storybook/nextjs",
-		options: {
-			nextConfigPath: path.resolve(__dirname, '../next.config.ts'),
-		},
-	},
-
-	staticDirs: ["../public"],
-
-	docs: {
-		autodocs: true,
-	},
-
-	typescript: {
-		reactDocgen: "react-docgen-typescript",
-		check: false,
-	},
-
-	webpackFinal: async (config) => {
-		// Ensure Tailwind dark mode works
-		if (config.module && config.module.rules) {
-			// Add support for CSS modules in Storybook
-			const rules = config.module.rules as Array<any>;
-			const cssRule = rules.find(rule => rule.test && rule.test.toString().includes('.css'));
-			
-			if (cssRule) {
-				if (cssRule.use) {
-					// Add Tailwind postcss config
-					const postCssLoader = cssRule.use.find((use: any) => 
-						use.loader && use.loader.includes('postcss-loader')
-					);
-					
-					if (postCssLoader && postCssLoader.options) {
-						postCssLoader.options.postcssOptions = {
-							config: path.resolve(__dirname, '../postcss.config.mjs'),
-						};
-					}
-				}
-			}
-		}
-		
-		// Enable path aliases
-		if (config.resolve) {
-			config.resolve.alias = {
-				...config.resolve.alias,
-				'@core': path.resolve(__dirname, '../src/types/core.d.ts'),
-			};
-		}
-
-		return config;
-	},
-}
-
-export default config
+export default config;

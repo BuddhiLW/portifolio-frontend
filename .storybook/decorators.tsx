@@ -32,7 +32,7 @@ const ThemeWrapper = ({
       style={{
         backgroundColor: theme === 'dark' ? '#1a0505' : '#ffffff',
         color: theme === 'dark' ? '#f8fafc' : '#0f172a',
-        maxWidth: '100%',
+        width: '100%',
         minHeight: '100px',
         borderRadius: '8px'
       }}
@@ -43,23 +43,27 @@ const ThemeWrapper = ({
 };
 
 // Decorator to provide the necessary i18n and theme context with light theme
-export const WithProviders: Decorator = (Story) => (
-  <NextIntlClientProvider locale="en" messages={messages}>
-    <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
-      <ThemeWrapper theme="light">
-        <Story />
-      </ThemeWrapper>
-    </ThemeProvider>
-  </NextIntlClientProvider>
-);
+export const WithProviders: Decorator = (Story, context) => {
+  return (
+    <NextIntlClientProvider locale="en" messages={messages}>
+      <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light">
+        <ThemeWrapper theme="light">
+          <Story />
+        </ThemeWrapper>
+      </ThemeProvider>
+    </NextIntlClientProvider>
+  );
+};
 
 // Decorator to provide the necessary i18n and theme context with dark theme
-export const WithDarkTheme: Decorator = (Story) => (
-  <NextIntlClientProvider locale="en" messages={messages}>
-    <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
-      <ThemeWrapper theme="dark">
-        <Story />
-      </ThemeWrapper>
-    </ThemeProvider>
-  </NextIntlClientProvider>
-);
+export const WithDarkTheme: Decorator = (Story, context) => {
+  return (
+    <NextIntlClientProvider locale="en" messages={messages}>
+      <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
+        <ThemeWrapper theme="dark">
+          <Story />
+        </ThemeWrapper>
+      </ThemeProvider>
+    </NextIntlClientProvider>
+  );
+};

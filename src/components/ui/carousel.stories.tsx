@@ -1,7 +1,10 @@
+"use client"
+
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./carousel"
 import Container from "@/components/shared/Container"
+import { WithProviders, WithDarkTheme } from "../../../.storybook/decorators"
 
 const meta = {
 	title: "UI/Carousel",
@@ -16,6 +19,7 @@ const meta = {
 			options: ["horizontal", "vertical"],
 		},
 	},
+	decorators: [WithProviders],
 } satisfies Meta<typeof Carousel>
 
 export default meta

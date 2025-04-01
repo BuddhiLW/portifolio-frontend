@@ -26,14 +26,7 @@ export async function chat(chatId: string, message: Message): Promise<string | n
 			}),
 			signal: controller.signal, // Attach the abort signal to the fetch request
 			// Set higher timeouts for the fetch call
-			cache: 'no-store',
-			next: { 
-				revalidate: 0,
-				// Set a higher timeout for this specific route
-				fetchOptions: {
-					signal: controller.signal
-				}
-			}
+			cache: "no-store",
 		})
 
 		if (!response.ok) {

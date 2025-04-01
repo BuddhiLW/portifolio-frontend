@@ -1,7 +1,10 @@
+"use client"
+
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 import SharedCarousel from "./Carousel"
 import Container from "./Container"
+import { WithProviders, WithDarkTheme } from "../../../.storybook/decorators"
 
 const meta = {
 	title: "Shared/Carousel",
@@ -10,6 +13,7 @@ const meta = {
 		layout: "fullscreen",
 	},
 	tags: ["autodocs"],
+	decorators: [WithProviders],
 } satisfies Meta<typeof SharedCarousel>
 
 export default meta
